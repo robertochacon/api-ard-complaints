@@ -608,16 +608,6 @@
                 "summary": "Register complaint",
                 "description": "Register complaint",
                 "operationId": "complaints_register",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -629,53 +619,49 @@
                                             "type": "number",
                                             "example": 1
                                         },
-                                        "code": {
-                                            "type": "string",
-                                            "example": ""
-                                        },
                                         "identification": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "00000000000"
                                         },
                                         "user_id": {
                                             "type": "number",
-                                            "example": ""
+                                            "example": "1"
                                         },
                                         "type": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "type"
                                         },
                                         "departments": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "departments,m2"
                                         },
                                         "anonymous": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "true"
                                         },
                                         "description": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "description"
                                         },
                                         "region": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "region"
                                         },
                                         "province": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "province"
                                         },
-                                        "codmunicipalitye": {
+                                        "municipality": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "municipality"
                                         },
                                         "address": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "address"
                                         },
                                         "priority": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "priority"
                                         },
                                         "file": {
                                             "type": "file",
