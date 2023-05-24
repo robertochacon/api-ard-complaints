@@ -20,7 +20,8 @@ class UserController extends Controller
      *         @OA\JsonContent(
      *              @OA\Property(property="id", type="number", example=1),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
-     *              @OA\Property(property="name", type="string", example="Roberto"),
+     *              @OA\Property(property="email", type="string", example="example@gmail.com"),
+     *              @OA\Property(property="name", type="string", example="example"),
      *              @OA\Property(property="role", type="string", example="user"),
      *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
      *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")

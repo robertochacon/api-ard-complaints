@@ -12,6 +12,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  *    title="Api de denuncias",
  *    version="1.0.0",
  * )
+ * 
+ * 
  */
 
 class Controller extends BaseController

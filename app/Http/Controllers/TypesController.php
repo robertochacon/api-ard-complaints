@@ -13,6 +13,7 @@ class TypesController extends Controller
      *     path="/api/types",
      *      operationId="all_type",
      *     tags={"Types"},
+     *     security={ {"bearer": {} }},
      *     summary="All types",
      *     description="All types",
      *     @OA\Response(
@@ -46,6 +47,7 @@ class TypesController extends Controller
      *     path="/api/type/{id}",
      *     operationId="watch_type",
      *     tags={"Types"},
+     *     security={ {"bearer": {} }},
      *     summary="See type",
      *     description="See type",
      *    @OA\Parameter(
@@ -88,6 +90,7 @@ class TypesController extends Controller
      *      path="/api/type",
      *      operationId="store_type",
      *      tags={"Types"},
+     *      security={ {"bearer": {} }},
      *      summary="Store type",
      *      description="Store type",
      *      @OA\RequestBody(
@@ -119,6 +122,7 @@ class TypesController extends Controller
      *      path="/api/type/update/{id}",
      *      operationId="update_type",
      *      tags={"Types"},
+     *      security={ {"bearer": {} }},
      *      summary="Update type",
      *      description="Update type",
      *     @OA\Parameter(
@@ -159,6 +163,7 @@ class TypesController extends Controller
      *      path="/api/type/delete/{id}",
      *      operationId="delete_type",
      *      tags={"Types"},
+     *      security={ {"bearer": {} }},
      *      summary="Delete type",
      *      description="Delete type",
      *    @OA\Parameter(

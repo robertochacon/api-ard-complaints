@@ -14,8 +14,9 @@
                 "description": "User Register here",
                 "operationId": "Register",
                 "requestBody": {
+                    "required": true,
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
                                 "required": [
                                     "name",
@@ -24,24 +25,24 @@
                                     "password_confirmation"
                                 ],
                                 "properties": {
+                                    "identification": {
+                                        "type": "string"
+                                    },
                                     "name": {
-                                        "type": "text"
+                                        "type": "string"
                                     },
                                     "email": {
-                                        "type": "text"
+                                        "type": "string"
                                     },
                                     "password": {
-                                        "type": "password"
+                                        "type": "string"
                                     },
                                     "password_confirmation": {
-                                        "type": "password"
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
                             }
-                        },
-                        "application/json": {
-                            "schema": {}
                         }
                     }
                 },
@@ -79,16 +80,15 @@
                 }
             }
         },
-        "/login": {
+        "/api/login": {
             "post": {
                 "tags": [
-                    "auth"
+                    "Auth"
                 ],
                 "summary": "Sign in",
                 "description": "Login by email, password",
                 "operationId": "authLogin",
                 "requestBody": {
-                    "description": "Pass user credentials",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -107,10 +107,6 @@
                                         "type": "string",
                                         "format": "password",
                                         "example": "PassWord12345"
-                                    },
-                                    "persistent": {
-                                        "type": "boolean",
-                                        "example": "true"
                                     }
                                 },
                                 "type": "object"
@@ -1187,7 +1183,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/type/{id}": {
@@ -1253,7 +1254,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/type": {
@@ -1304,7 +1310,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/type/update/{id}": {
@@ -1365,7 +1376,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/type/delete/{id}": {
@@ -1406,7 +1422,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/users": {
@@ -1432,9 +1453,13 @@
                                             "type": "string",
                                             "example": "00000000000"
                                         },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "example@gmail.com"
+                                        },
                                         "name": {
                                             "type": "string",
-                                            "example": "Roberto"
+                                            "example": "example"
                                         },
                                         "role": {
                                             "type": "string",
