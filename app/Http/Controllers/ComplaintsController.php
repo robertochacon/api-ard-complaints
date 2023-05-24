@@ -10,9 +10,10 @@ class ComplaintsController extends Controller
 {
     /**
      * @OA\Get (
-     *     path="/api/complaints",
+     *     path="/api/auth/complaints",
      *      operationId="all",
      *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
      *     summary="All complaints",
      *     description="All complaints",
      *     @OA\Response(
@@ -38,6 +39,13 @@ class ComplaintsController extends Controller
      *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
      *         )
      *     ),
+    *      @OA\Response(
+    *          response=401,
+    *          description="Unauthorized",
+    *          @OA\JsonContent(
+    *               @OA\Property(property="id", type="number", example=1),
+    *           )
+    *       ),
      *      @OA\Response(
      *          response=404,
      *          description="NOT FOUND",
@@ -55,9 +63,10 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/complaints/person/{identification}",
+     *     path="/api/auth/auth/complaints/person/{identification}",
      *      operationId="complaints_person",
      *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
      *     summary="All complaints of person",
      *     description="All complaints of person",
      *     @OA\Parameter(
@@ -107,9 +116,10 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/complaints/user/{user_id}",
+     *     path="/api/auth/auth/complaints/user/{user_id}",
      *      operationId="complaints_user",
      *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
      *     summary="All complaints of user",
      *     description="All complaints of user",
      *     @OA\Parameter(
@@ -159,9 +169,10 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/complaint/{code}",
+     *     path="/api/auth/auth/complaint/{code}",
      *     operationId="complaints_code",
      *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
      *     summary="Get complaints of code",
      *     description="Get complaints of code",
      *     @OA\Parameter(
@@ -214,9 +225,10 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Post (
-     *     path="/api/complaint",
+     *     path="/api/auth/auth/complaint",
      *     operationId="complaints_register",
      *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
      *     summary="Register complaint",
      *     description="Register complaint",
      *     @OA\Response(
@@ -272,9 +284,10 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Put (
-     *     path="/api/complaint/update/{id}",
+     *     path="/api/auth/auth/complaint/update/{id}",
      *     operationId="complaints_register",
      *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
      *     summary="Update complaint",
      *     description="Update complaint",
      *     @OA\Parameter(
@@ -328,9 +341,10 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/complaint/delete/{id}",
+     *      path="/api/auth/auth/complaint/delete/{id}",
      *      operationId="complaint_delete",
      *      tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
      *      summary="Delete complaints",
      *      description="Delete complaints",
      *    @OA\Parameter(

@@ -10,9 +10,10 @@ class DepartamentsController extends Controller
 
      /**
      * @OA\Get (
-     *     path="/api/departaments",
+     *     path="/api/auth/departaments",
      *      operationId="all_type",
      *     tags={"Departaments"},
+     *     security={{ "apiAuth": {} }},
      *     summary="All adepartament",
      *     description="All adepartament",
      *     @OA\Response(
@@ -42,9 +43,10 @@ class DepartamentsController extends Controller
 
      /**
      * @OA\Get (
-     *     path="/api/departaments/{id}",
+     *     path="/api/auth/departaments/{id}",
      *     operationId="watch_type",
      *     tags={"Departaments"},
+     *     security={{ "apiAuth": {} }},
      *     summary="See adepartament",
      *     description="See adepartament",
      *    @OA\Parameter(
@@ -83,9 +85,10 @@ class DepartamentsController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/departament",
+     *      path="/api/auth/departament",
      *      operationId="store_type",
      *      tags={"Departaments"},
+     *     security={{ "apiAuth": {} }},
      *      summary="Store adepartament",
      *      description="Store adepartament",
      *      @OA\RequestBody(
@@ -113,9 +116,10 @@ class DepartamentsController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/departament/update/{id}",
+     *      path="/api/auth/departament/update/{id}",
      *      operationId="update_type",
      *      tags={"Departaments"},
+     *     security={{ "apiAuth": {} }},
      *      summary="Update adepartament",
      *      description="Update adepartament",
      *     @OA\Parameter(
@@ -153,9 +157,10 @@ class DepartamentsController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/departament/delete/{id}",
+     *      path="/api/auth/departament/delete/{id}",
      *      operationId="delete_type",
      *      tags={"Departaments"},
+     *     security={{ "apiAuth": {} }},
      *      summary="Delete adepartament",
      *      description="Delete adepartament",
      *    @OA\Parameter(

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Entitys;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -11,7 +10,9 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('jwt', ['except' => ['login','register']]);
+        $this->middleware(
+            'auth:api', ['except' => ['login','register']]
+        );
     }
 
     /**
@@ -66,13 +67,13 @@ class AuthController extends Controller
      * summary="Sign in",
      * description="Login by email, password",
      * operationId="authLogin",
-     * tags={"Auth"},
+     * tags={"Login"},
      * @OA\RequestBody(
      *    required=true,
      *    @OA\JsonContent(
      *       required={"email","password"},
-     *       @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
-     *       @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+     *       @OA\Property(property="email", type="string", format="email", example="admin@gmail.com"),
+     *       @OA\Property(property="password", type="string", format="password", example="admin"),
      *    ),
      * ),
      * @OA\Response(
@@ -90,13 +91,13 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['status' => 'error', 'error' => 'Unauthorized'], 401);
         }
 
         $user = auth()->user();
 
         // return $this->respondWithToken($token);
-        return response()->json(['token' => $token, 'user' => $user]);
+        return response()->json(['status' => 'success', 'token' => $token, 'user' => $user]);
 
     }
 

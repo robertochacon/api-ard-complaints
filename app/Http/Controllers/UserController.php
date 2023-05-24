@@ -9,9 +9,10 @@ class UserController extends Controller
 {
     /**
      * @OA\Get (
-     *     path="/api/users",
+     *     path="/api/auth/users",
      *      operationId="all_users",
      *     tags={"Users"},
+     *     security={{ "apiAuth": {} }},
      *     summary="All users",
      *     description="All users",
      *     @OA\Response(
@@ -27,11 +28,16 @@ class UserController extends Controller
      *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
      *         )
      *     ),
+    *      @OA\Response(
+    *          response=401,
+    *          description="Unauthorized",
+    *          @OA\JsonContent()
+    *       ),
      *      @OA\Response(
      *          response=404,
      *          description="NOT FOUND",
      *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Cliente] #id"),
+     *              @OA\Property(property="message", type="string", example="No query results"),
      *          )
      *      )
      * )
@@ -44,9 +50,10 @@ class UserController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/user/{id}",
+     *     path="/api/auth/user/{id}",
      *      operationId="all_users",
      *     tags={"Users"},
+     *     security={{ "apiAuth": {} }},
      *     summary="Get user",
      *     description="Get user",
      *     @OA\Parameter(
@@ -88,9 +95,10 @@ class UserController extends Controller
 
     /**
      * @OA\Put (
-     *     path="/api/user/{id}",
+     *     path="/api/auth/user/{id}",
      *      operationId="update_user",
      *     tags={"Users"},
+     *     security={{ "apiAuth": {} }},
      *     summary="Update user",
      *     description="Update user",
      *     @OA\Parameter(
@@ -133,9 +141,10 @@ class UserController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/user/delete/{id}",
+     *      path="/api/auth/user/delete/{id}",
      *      operationId="delete_user",
      *      tags={"Users"},
+     *     security={{ "apiAuth": {} }},
      *      summary="Delete user",
      *      description="Delete user",
      *    @OA\Parameter(

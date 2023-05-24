@@ -10,10 +10,10 @@ class TypesController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/types",
+     *     path="/api/auth/types",
      *      operationId="all_type",
      *     tags={"Types"},
-     *     security={ {"bearer": {} }},
+     *     security={{ "apiAuth": {} }},
      *     summary="All types",
      *     description="All types",
      *     @OA\Response(
@@ -44,10 +44,10 @@ class TypesController extends Controller
 
      /**
      * @OA\Get (
-     *     path="/api/type/{id}",
+     *     path="/api/auth/type/{id}",
      *     operationId="watch_type",
      *     tags={"Types"},
-     *     security={ {"bearer": {} }},
+     *     security={{ "apiAuth": {} }},
      *     summary="See type",
      *     description="See type",
      *    @OA\Parameter(
@@ -87,10 +87,10 @@ class TypesController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/type",
+     *      path="/api/auth/type",
      *      operationId="store_type",
      *      tags={"Types"},
-     *      security={ {"bearer": {} }},
+     *     security={{ "apiAuth": {} }},
      *      summary="Store type",
      *      description="Store type",
      *      @OA\RequestBody(
@@ -119,10 +119,10 @@ class TypesController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/type/update/{id}",
+     *      path="/api/auth/type/update/{id}",
      *      operationId="update_type",
      *      tags={"Types"},
-     *      security={ {"bearer": {} }},
+     *     security={{ "apiAuth": {} }},
      *      summary="Update type",
      *      description="Update type",
      *     @OA\Parameter(
@@ -160,10 +160,10 @@ class TypesController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/type/delete/{id}",
+     *      path="/api/auth/type/delete/{id}",
      *      operationId="delete_type",
      *      tags={"Types"},
-     *      security={ {"bearer": {} }},
+     *     security={{ "apiAuth": {} }},
      *      summary="Delete type",
      *      description="Delete type",
      *    @OA\Parameter(

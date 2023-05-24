@@ -83,7 +83,7 @@
         "/api/login": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "Login"
                 ],
                 "summary": "Sign in",
                 "description": "Login by email, password",
@@ -101,12 +101,12 @@
                                     "email": {
                                         "type": "string",
                                         "format": "email",
-                                        "example": "user1@mail.com"
+                                        "example": "admin@gmail.com"
                                     },
                                     "password": {
                                         "type": "string",
                                         "format": "password",
-                                        "example": "PassWord12345"
+                                        "example": "admin"
                                     }
                                 },
                                 "type": "object"
@@ -134,7 +134,7 @@
                 }
             }
         },
-        "/api/complaints": {
+        "/api/auth/complaints": {
             "get": {
                 "tags": [
                     "Complaints"
@@ -223,6 +223,22 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
                     "404": {
                         "description": "NOT FOUND",
                         "content": {
@@ -239,10 +255,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/complaints/person/{identification}": {
+        "/api/auth/auth/complaints/person/{identification}": {
             "get": {
                 "tags": [
                     "Complaints"
@@ -357,10 +378,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/complaints/user/{user_id}": {
+        "/api/auth/auth/complaints/user/{user_id}": {
             "get": {
                 "tags": [
                     "Complaints"
@@ -475,10 +501,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/complaint/{code}": {
+        "/api/auth/auth/complaint/{code}": {
             "get": {
                 "tags": [
                     "Complaints"
@@ -593,10 +624,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/complaint": {
+        "/api/auth/auth/complaint": {
             "post": {
                 "tags": [
                     "Complaints"
@@ -693,10 +729,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/complaint/update/{id}": {
+        "/api/auth/auth/complaint/update/{id}": {
             "put": {
                 "tags": [
                     "Complaints"
@@ -811,10 +852,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/complaint/delete/{id}": {
+        "/api/auth/auth/complaint/delete/{id}": {
             "delete": {
                 "tags": [
                     "Complaints"
@@ -852,10 +898,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/departaments": {
+        "/api/auth/departaments": {
             "get": {
                 "tags": [
                     "Departaments"
@@ -908,10 +959,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/departaments/{id}": {
+        "/api/auth/departaments/{id}": {
             "get": {
                 "tags": [
                     "Departaments"
@@ -974,10 +1030,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/departament": {
+        "/api/auth/departament": {
             "post": {
                 "tags": [
                     "Departaments"
@@ -1025,10 +1086,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/departament/update/{id}": {
+        "/api/auth/departament/update/{id}": {
             "put": {
                 "tags": [
                     "Departaments"
@@ -1086,10 +1152,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/departament/delete/{id}": {
+        "/api/auth/departament/delete/{id}": {
             "delete": {
                 "tags": [
                     "Departaments"
@@ -1127,10 +1198,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/types": {
+        "/api/auth/types": {
             "get": {
                 "tags": [
                     "Types"
@@ -1186,12 +1262,12 @@
                 },
                 "security": [
                     {
-                        "bearer": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/api/type/{id}": {
+        "/api/auth/type/{id}": {
             "get": {
                 "tags": [
                     "Types"
@@ -1257,12 +1333,12 @@
                 },
                 "security": [
                     {
-                        "bearer": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/api/type": {
+        "/api/auth/type": {
             "post": {
                 "tags": [
                     "Types"
@@ -1313,12 +1389,12 @@
                 },
                 "security": [
                     {
-                        "bearer": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/api/type/update/{id}": {
+        "/api/auth/type/update/{id}": {
             "put": {
                 "tags": [
                     "Types"
@@ -1379,12 +1455,12 @@
                 },
                 "security": [
                     {
-                        "bearer": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/api/type/delete/{id}": {
+        "/api/auth/type/delete/{id}": {
             "delete": {
                 "tags": [
                     "Types"
@@ -1425,12 +1501,12 @@
                 },
                 "security": [
                     {
-                        "bearer": []
+                        "apiAuth": []
                     }
                 ]
             }
         },
-        "/api/users": {
+        "/api/auth/users": {
             "get": {
                 "tags": [
                     "Users"
@@ -1479,6 +1555,14 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
                     "404": {
                         "description": "NOT FOUND",
                         "content": {
@@ -1487,7 +1571,7 @@
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "No query results for model [App\\\\Models\\\\Cliente] #id"
+                                            "example": "No query results"
                                         }
                                     },
                                     "type": "object"
@@ -1495,10 +1579,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/user/{id}": {
+        "/api/auth/user/{id}": {
             "get": {
                 "tags": [
                     "Users"
@@ -1569,7 +1658,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -1641,10 +1735,15 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/user/delete/{id}": {
+        "/api/auth/user/delete/{id}": {
             "delete": {
                 "tags": [
                     "Users"
@@ -1682,7 +1781,24 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     }
