@@ -8,7 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
- * schemes={"https"},
  * @OA\Info(
  *    title="Api de denuncias",
  *    version="1.0.0",
