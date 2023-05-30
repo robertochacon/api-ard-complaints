@@ -8,13 +8,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
+ * schemes={"https"},
  * @OA\Info(
  *    title="Api de denuncias",
  *    version="1.0.0",
  * ) 
  * 
  * @OA\SecurityScheme(
- *     type="https",
+ *     type="http",
  *     description="Login with email and password to get the authentication token",
  *     name="Token based Based",
  *     in="header",
