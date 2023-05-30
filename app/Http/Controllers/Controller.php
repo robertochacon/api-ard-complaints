@@ -14,7 +14,7 @@ use Illuminate\Routing\Controller as BaseController;
  * ) 
  * 
  * @OA\SecurityScheme(
- *     type="apiKey",
+ *     type="http",
  *     description="Login with email and password to get the authentication token",
  *     name="Token based Based",
  *     in="header",
