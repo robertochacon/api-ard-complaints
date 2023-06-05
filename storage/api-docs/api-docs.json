@@ -302,7 +302,7 @@
                                         "example": "1"
                                     },
                                     "anonymous": {
-                                        "type": "string",
+                                        "type": "boolean",
                                         "example": "true"
                                     },
                                     "description": {
@@ -363,7 +363,7 @@
                                             "example": "1"
                                         },
                                         "type": {
-                                            "type": "string",
+                                            "type": "boolean",
                                             "example": "[]"
                                         },
                                         "department": {
@@ -986,7 +986,7 @@
                                         "example": "1"
                                     },
                                     "anonymous": {
-                                        "type": "string",
+                                        "type": "boolean",
                                         "example": "true"
                                     },
                                     "description": {
@@ -1063,7 +1063,7 @@
                                             "example": ""
                                         },
                                         "anonymous": {
-                                            "type": "string",
+                                            "type": "boolean",
                                             "example": ""
                                         },
                                         "description": {
