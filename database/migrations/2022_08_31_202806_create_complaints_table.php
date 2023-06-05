@@ -31,8 +31,8 @@ class CreateComplaintsTable extends Migration
             $table->string('address')->nullable();
             $table->string('reason')->nullable();
             $table->longText('file')->nullable();
-            $table->enum('priority',['baja','media','alta'])->default('baja');
-            $table->enum('status',['enviada','recibida','proceso','finalizada','rechazada'])->default('enviada');
+            $table->enum('priority',['Baja','Media','Alta'])->default('Baja');
+            $table->enum('status',['Enviada','Recibida','Procesando','Finalizada','Rechazada'])->default('Enviada');
             $table->timestamps();
         });
     }

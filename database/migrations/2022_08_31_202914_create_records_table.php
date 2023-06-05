@@ -19,7 +19,7 @@ class CreateRecordsTable extends Migration
             $table->foreign('complaint_id')->references('id')->on('complaints');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('status',['enviada','recibida','proceso','finalizada','rechazada'])->default('enviada');
+            $table->enum('status',['Enviada','Recibida','Procesando','Finalizada','Rechazada'])->default('Enviada');
             $table->timestamps();
         });
     }
