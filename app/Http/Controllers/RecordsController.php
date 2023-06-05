@@ -36,7 +36,7 @@ class RecordsController extends Controller
      */
     public function index()
     {
-        $record = Records::with('complaint')->get();
+        $record = Records::with(['complaint','user'])->get();
         return response()->json(["data"=>$record],200);
     }
 
@@ -67,7 +67,7 @@ class RecordsController extends Controller
 
     public function watch($complaint_id){
         try{
-            $record = Records::where("complaint_id", $complaint_id)->with('complaint')->get();
+            $record = Records::where("complaint_id", $complaint_id)->with(['complaint','user'])->get();
             return response()->json(["data"=>$record],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
@@ -85,8 +85,8 @@ class RecordsController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *            required={"nacompaint_idme","user_id","status"},
-     *            @OA\Property(property="compaint_id", type="string", format="string", example="compaint_id"),
+     *            required={"complaint_id","user_id","status"},
+     *            @OA\Property(property="complaint_id", type="string", format="string", example="complaint_id"),
      *            @OA\Property(property="user_id", type="string", format="string", example="user_id"),
      *            @OA\Property(property="status", type="string", format="string", example="status"),
      *         ),

@@ -929,7 +929,7 @@
                                             "type": "string",
                                             "example": ""
                                         },
-                                        "codmunicipalitye": {
+                                        "municipality": {
                                             "type": "string",
                                             "example": ""
                                         },
@@ -1034,7 +1034,7 @@
         "/api/departaments": {
             "get": {
                 "tags": [
-                    "Departaments"
+                    "Departments"
                 ],
                 "summary": "All adepartament",
                 "description": "All adepartament",
@@ -1093,7 +1093,7 @@
             },
             "post": {
                 "tags": [
-                    "Departaments"
+                    "Departments"
                 ],
                 "summary": "Store adepartament",
                 "description": "Store adepartament",
@@ -1149,7 +1149,7 @@
         "/api/departaments/{id}": {
             "get": {
                 "tags": [
-                    "Departaments"
+                    "Departments"
                 ],
                 "summary": "See adepartament",
                 "description": "See adepartament",
@@ -1218,7 +1218,7 @@
             },
             "put": {
                 "tags": [
-                    "Departaments"
+                    "Departments"
                 ],
                 "summary": "Update adepartament",
                 "description": "Update adepartament",
@@ -1282,7 +1282,7 @@
             },
             "delete": {
                 "tags": [
-                    "Departaments"
+                    "Departments"
                 ],
                 "summary": "Delete adepartament",
                 "description": "Delete adepartament",
@@ -1393,15 +1393,15 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "nacompaint_idme",
+                                    "complaint_id",
                                     "user_id",
                                     "status"
                                 ],
                                 "properties": {
-                                    "compaint_id": {
+                                    "complaint_id": {
                                         "type": "string",
                                         "format": "string",
-                                        "example": "compaint_id"
+                                        "example": "complaint_id"
                                     },
                                     "user_id": {
                                         "type": "string",

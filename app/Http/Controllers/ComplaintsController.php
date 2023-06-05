@@ -346,7 +346,7 @@ class ComplaintsController extends Controller
      *              @OA\Property(property="description", type="string", example=""),
      *              @OA\Property(property="region", type="string", example=""),
      *              @OA\Property(property="province", type="string", example=""),
-     *              @OA\Property(property="codmunicipalitye", type="string", example=""),
+     *              @OA\Property(property="municipality", type="string", example=""),
      *              @OA\Property(property="address", type="string", example=""),
      *              @OA\Property(property="priority", type="string", example=""),
      *              @OA\Property(property="status", type="string", example=""),
