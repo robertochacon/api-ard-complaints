@@ -5,7 +5,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/auth/login": {
+        "/api/login": {
             "post": {
                 "tags": [
                     "Login"
@@ -59,7 +59,7 @@
                 }
             }
         },
-        "/api/auth/register": {
+        "/api/register": {
             "post": {
                 "tags": [
                     "Register"
@@ -73,6 +73,7 @@
                         "application/json": {
                             "schema": {
                                 "required": [
+                                    "identification",
                                     "name",
                                     "email",
                                     "password",
@@ -134,7 +135,7 @@
                 }
             }
         },
-        "/api/auth/complaints": {
+        "/api/complaints": {
             "get": {
                 "tags": [
                     "Complaints"
@@ -261,9 +262,177 @@
                         "apiAuth": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "Complaints"
+                ],
+                "summary": "Register complaint",
+                "description": "Register complaint",
+                "operationId": "complaints_register",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "description",
+                                    "departments",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "identification": {
+                                        "type": "string",
+                                        "example": "00000000000"
+                                    },
+                                    "user_id": {
+                                        "type": "number",
+                                        "example": "1"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "type"
+                                    },
+                                    "departments": {
+                                        "type": "string",
+                                        "example": "departments,m2"
+                                    },
+                                    "anonymous": {
+                                        "type": "string",
+                                        "example": "true"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "description"
+                                    },
+                                    "region": {
+                                        "type": "string",
+                                        "example": "region"
+                                    },
+                                    "province": {
+                                        "type": "string",
+                                        "example": "province"
+                                    },
+                                    "municipality": {
+                                        "type": "string",
+                                        "example": "municipality"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "address"
+                                    },
+                                    "priority": {
+                                        "type": "string",
+                                        "example": "medium"
+                                    },
+                                    "file": {
+                                        "type": "file",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "identification": {
+                                            "type": "string",
+                                            "example": "00000000000"
+                                        },
+                                        "user_id": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "type"
+                                        },
+                                        "departments": {
+                                            "type": "string",
+                                            "example": "departments,m2"
+                                        },
+                                        "anonymous": {
+                                            "type": "string",
+                                            "example": "true"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "description"
+                                        },
+                                        "region": {
+                                            "type": "string",
+                                            "example": "region"
+                                        },
+                                        "province": {
+                                            "type": "string",
+                                            "example": "province"
+                                        },
+                                        "municipality": {
+                                            "type": "string",
+                                            "example": "municipality"
+                                        },
+                                        "address": {
+                                            "type": "string",
+                                            "example": "address"
+                                        },
+                                        "priority": {
+                                            "type": "string",
+                                            "example": "medium"
+                                        },
+                                        "file": {
+                                            "type": "file",
+                                            "example": ""
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T00:09:16.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Cliente] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/auth/auth/complaints/person/{identification}": {
+        "/api/complaints/person/{identification}": {
             "get": {
                 "tags": [
                     "Complaints"
@@ -386,7 +555,7 @@
                 ]
             }
         },
-        "/api/auth/auth/complaints/user/{user_id}": {
+        "/api/complaints/user/{user_id}": {
             "get": {
                 "tags": [
                     "Complaints"
@@ -509,17 +678,17 @@
                 ]
             }
         },
-        "/api/auth/auth/complaint/{code}": {
+        "/api/complaints/{id}": {
             "get": {
                 "tags": [
                     "Complaints"
                 ],
-                "summary": "Get complaints of code",
-                "description": "Get complaints of code",
-                "operationId": "complaints_code",
+                "summary": "Get complaints of id",
+                "description": "Get complaints of id",
+                "operationId": "complaints_id",
                 "parameters": [
                     {
-                        "name": "code",
+                        "name": "id",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -630,114 +799,7 @@
                         "apiAuth": []
                     }
                 ]
-            }
-        },
-        "/api/auth/auth/complaint": {
-            "post": {
-                "tags": [
-                    "Complaints"
-                ],
-                "summary": "Register complaint",
-                "description": "Register complaint",
-                "operationId": "complaints_register",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "id": {
-                                            "type": "number",
-                                            "example": 1
-                                        },
-                                        "identification": {
-                                            "type": "string",
-                                            "example": "00000000000"
-                                        },
-                                        "user_id": {
-                                            "type": "number",
-                                            "example": "1"
-                                        },
-                                        "type": {
-                                            "type": "string",
-                                            "example": "type"
-                                        },
-                                        "departments": {
-                                            "type": "string",
-                                            "example": "departments,m2"
-                                        },
-                                        "anonymous": {
-                                            "type": "string",
-                                            "example": "true"
-                                        },
-                                        "description": {
-                                            "type": "string",
-                                            "example": "description"
-                                        },
-                                        "region": {
-                                            "type": "string",
-                                            "example": "region"
-                                        },
-                                        "province": {
-                                            "type": "string",
-                                            "example": "province"
-                                        },
-                                        "municipality": {
-                                            "type": "string",
-                                            "example": "municipality"
-                                        },
-                                        "address": {
-                                            "type": "string",
-                                            "example": "address"
-                                        },
-                                        "priority": {
-                                            "type": "string",
-                                            "example": "priority"
-                                        },
-                                        "file": {
-                                            "type": "file",
-                                            "example": ""
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2023-02-23T00:09:16.000000Z"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2023-02-23T12:33:45.000000Z"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "NOT FOUND",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "No query results for model [App\\\\Models\\\\Cliente] #id"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "apiAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/auth/auth/complaint/update/{id}": {
+            },
             "put": {
                 "tags": [
                     "Complaints"
@@ -755,6 +817,71 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "description",
+                                    "departments",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "identification": {
+                                        "type": "string",
+                                        "example": "00000000000"
+                                    },
+                                    "user_id": {
+                                        "type": "number",
+                                        "example": "1"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "type"
+                                    },
+                                    "departments": {
+                                        "type": "string",
+                                        "example": "departments,m2"
+                                    },
+                                    "anonymous": {
+                                        "type": "string",
+                                        "example": "true"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "description"
+                                    },
+                                    "region": {
+                                        "type": "string",
+                                        "example": "region"
+                                    },
+                                    "province": {
+                                        "type": "string",
+                                        "example": "province"
+                                    },
+                                    "municipality": {
+                                        "type": "string",
+                                        "example": "municipality"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "address"
+                                    },
+                                    "priority": {
+                                        "type": "string",
+                                        "example": "medium"
+                                    },
+                                    "file": {
+                                        "type": "file",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -858,9 +985,7 @@
                         "apiAuth": []
                     }
                 ]
-            }
-        },
-        "/api/auth/auth/complaint/delete/{id}": {
+            },
             "delete": {
                 "tags": [
                     "Complaints"
@@ -906,7 +1031,7 @@
                 ]
             }
         },
-        "/api/auth/departaments": {
+        "/api/departaments": {
             "get": {
                 "tags": [
                     "Departaments"
@@ -965,9 +1090,63 @@
                         "apiAuth": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "Departaments"
+                ],
+                "summary": "Store adepartament",
+                "description": "Store adepartament",
+                "operationId": "store_departament",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/auth/departaments/{id}": {
+        "/api/departaments/{id}": {
             "get": {
                 "tags": [
                     "Departaments"
@@ -1036,65 +1215,7 @@
                         "apiAuth": []
                     }
                 ]
-            }
-        },
-        "/api/auth/departament": {
-            "post": {
-                "tags": [
-                    "Departaments"
-                ],
-                "summary": "Store adepartament",
-                "description": "Store adepartament",
-                "operationId": "store_departament",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Name"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": ""
-                                        },
-                                        "data": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "apiAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/auth/departament/update/{id}": {
+            },
             "put": {
                 "tags": [
                     "Departaments"
@@ -1158,9 +1279,7 @@
                         "apiAuth": []
                     }
                 ]
-            }
-        },
-        "/api/auth/departament/delete/{id}": {
+            },
             "delete": {
                 "tags": [
                     "Departaments"
@@ -1206,7 +1325,7 @@
                 ]
             }
         },
-        "/api/auth/types": {
+        "/api/types": {
             "get": {
                 "tags": [
                     "Types"
@@ -1265,9 +1384,69 @@
                         "apiAuth": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "Types"
+                ],
+                "summary": "Store type",
+                "description": "Store type",
+                "operationId": "store_type",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "department_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Name"
+                                    },
+                                    "department_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "department_id"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
             }
         },
-        "/api/auth/type/{id}": {
+        "/api/types/{id}": {
             "get": {
                 "tags": [
                     "Types"
@@ -1336,65 +1515,7 @@
                         "apiAuth": []
                     }
                 ]
-            }
-        },
-        "/api/auth/type": {
-            "post": {
-                "tags": [
-                    "Types"
-                ],
-                "summary": "Store type",
-                "description": "Store type",
-                "operationId": "store_type",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Name"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": ""
-                                        },
-                                        "data": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "apiAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/auth/type/update/{id}": {
+            },
             "put": {
                 "tags": [
                     "Types"
@@ -1458,9 +1579,7 @@
                         "apiAuth": []
                     }
                 ]
-            }
-        },
-        "/api/auth/type/delete/{id}": {
+            },
             "delete": {
                 "tags": [
                     "Types"
@@ -1506,7 +1625,7 @@
                 ]
             }
         },
-        "/api/auth/users": {
+        "/api/users": {
             "get": {
                 "tags": [
                     "Users"
@@ -1587,7 +1706,7 @@
                 ]
             }
         },
-        "/api/auth/user/{id}": {
+        "/api/users/{id}": {
             "get": {
                 "tags": [
                     "Users"
@@ -1682,6 +1801,30 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "identification": {
+                                        "type": "string",
+                                        "example": "00000000000"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Roberto"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "user"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1741,9 +1884,7 @@
                         "apiAuth": []
                     }
                 ]
-            }
-        },
-        "/api/auth/user/delete/{id}": {
+            },
             "delete": {
                 "tags": [
                     "Users"

@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         /**
      * @OA\Post(
-     * path="/api/auth/login",
+     * path="/api/login",
      * summary="Sign in",
      * description="Login by email, password",
      * operationId="authLogin",
@@ -113,7 +113,7 @@ class AuthController extends Controller
 
         /**
     * @OA\Post(
-    * path="/api/auth/register",
+    * path="/api/register",
     * operationId="Register",
     * tags={"Register"},
     * summary="User Register",
@@ -121,7 +121,7 @@ class AuthController extends Controller
     *      @OA\RequestBody(
     *         required=true,
     *         @OA\JsonContent(
-    *               required={"name","email", "password", "password_confirmation"},
+    *               required={"identification","name","email", "password", "password_confirmation"},
     *               @OA\Property(property="identification", type="string"),
     *               @OA\Property(property="name", type="string"),
     *               @OA\Property(property="email", type="string"),

@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     /**
      * @OA\Get (
-     *     path="/api/auth/users",
+     *     path="/api/users",
      *      operationId="all_users",
      *     tags={"Users"},
      *     security={{ "apiAuth": {} }},
@@ -50,7 +50,7 @@ class UserController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/auth/user/{id}",
+     *     path="/api/users/{id}",
      *      operationId="watch_users",
      *     tags={"Users"},
      *     security={{ "apiAuth": {} }},
@@ -95,7 +95,7 @@ class UserController extends Controller
 
     /**
      * @OA\Put (
-     *     path="/api/auth/user/{id}",
+     *     path="/api/users/{id}",
      *      operationId="update_user",
      *     tags={"Users"},
      *     security={{ "apiAuth": {} }},
@@ -107,6 +107,14 @@ class UserController extends Controller
      *         required=true,
      *         @OA\Schema(type="string")
      *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *              @OA\Property(property="identification", type="string", example="00000000000"),
+     *              @OA\Property(property="name", type="string", example="Roberto"),
+     *              @OA\Property(property="role", type="string", example="user"),
+     *         ),
+     *      ),
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -141,7 +149,7 @@ class UserController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/auth/user/delete/{id}",
+     *      path="/api/users/{id}",
      *      operationId="delete_user",
      *      tags={"Users"},
      *     security={{ "apiAuth": {} }},

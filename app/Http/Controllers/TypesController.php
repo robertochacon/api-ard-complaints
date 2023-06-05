@@ -10,7 +10,7 @@ class TypesController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/auth/types",
+     *     path="/api/types",
      *      operationId="all_type",
      *     tags={"Types"},
      *     security={{ "apiAuth": {} }},
@@ -37,14 +37,14 @@ class TypesController extends Controller
      */
     public function index()
     {
-        $types = Types::all();
+        $types = Types::with('departaments')->get();
         return response()->json(["data"=>$types],200);
     }
 
 
      /**
      * @OA\Get (
-     *     path="/api/auth/type/{id}",
+     *     path="/api/types/{id}",
      *     operationId="watch_type",
      *     tags={"Types"},
      *     security={{ "apiAuth": {} }},
@@ -78,7 +78,7 @@ class TypesController extends Controller
 
     public function watch($id){
         try{
-            $types = Types::find($id);
+            $types = Types::find($id)->with('departaments')->get();;
             return response()->json(["data"=>$types],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
@@ -87,7 +87,7 @@ class TypesController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/auth/type",
+     *      path="/api/types",
      *      operationId="store_type",
      *      tags={"Types"},
      *     security={{ "apiAuth": {} }},
@@ -96,8 +96,9 @@ class TypesController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *            required={"name"},
+     *            required={"name","department_id"},
      *            @OA\Property(property="name", type="string", format="string", example="Name"),
+     *            @OA\Property(property="department_id", type="string", format="string", example="department_id"),
      *         ),
      *      ),
      *     @OA\Response(
@@ -119,7 +120,7 @@ class TypesController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/auth/type/update/{id}",
+     *      path="/api/types/{id}",
      *      operationId="update_type",
      *      tags={"Types"},
      *     security={{ "apiAuth": {} }},
@@ -160,7 +161,7 @@ class TypesController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/auth/type/delete/{id}",
+     *      path="/api/types/{id}",
      *      operationId="delete_type",
      *      tags={"Types"},
      *     security={{ "apiAuth": {} }},

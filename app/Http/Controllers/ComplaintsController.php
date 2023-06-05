@@ -10,7 +10,7 @@ class ComplaintsController extends Controller
 {
     /**
      * @OA\Get (
-     *     path="/api/auth/complaints",
+     *     path="/api/complaints",
      *      operationId="all",
      *     tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
@@ -57,13 +57,13 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        $complaints = Complaints::all();
+        $complaints = Complaints::with('user')->get();
         return response()->json(["data"=>$complaints],200);
     }
 
     /**
      * @OA\Get (
-     *     path="/api/auth/auth/complaints/person/{identification}",
+     *     path="/api/complaints/person/{identification}",
      *      operationId="complaints_person",
      *     tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
@@ -116,7 +116,7 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/auth/auth/complaints/user/{user_id}",
+     *     path="/api/complaints/user/{user_id}",
      *      operationId="complaints_user",
      *     tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
@@ -169,15 +169,15 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Get (
-     *     path="/api/auth/auth/complaint/{code}",
-     *     operationId="complaints_code",
+     *     path="/api/complaints/{id}",
+     *     operationId="complaints_id",
      *     tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
-     *     summary="Get complaints of code",
-     *     description="Get complaints of code",
+     *     summary="Get complaints of id",
+     *     description="Get complaints of id",
      *     @OA\Parameter(
      *         in="path",
-     *         name="code",
+     *         name="id",
      *         required=true,
      *         @OA\Schema(type="string")
      *     ),
@@ -214,9 +214,9 @@ class ComplaintsController extends Controller
      * )
      */
 
-    public function watch($code){
+    public function watch($id){
         try{
-            $document = Complaints::where('code','=',$code)->get();
+            $document = Complaints::where('id','=',$id)->get();
             return response()->json(["data"=>$document],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
@@ -225,12 +225,30 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Post (
-     *     path="/api/auth/auth/complaint",
+     *     path="/api/complaints",
      *     operationId="complaints_register",
      *     tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
      *     summary="Register complaint",
      *     description="Register complaint",
+    *      @OA\RequestBody(
+    *         required=true,
+    *         @OA\JsonContent(
+    *               required={"description","departments", "type"},
+     *              @OA\Property(property="identification", type="string", example="00000000000"),
+     *              @OA\Property(property="user_id", type="number", example="1"),
+     *              @OA\Property(property="type", type="string", example="type"),
+     *              @OA\Property(property="departments", type="string", example="departments,m2"),
+     *              @OA\Property(property="anonymous", type="string", example="true"),
+     *              @OA\Property(property="description", type="string", example="description"),
+     *              @OA\Property(property="region", type="string", example="region"),
+     *              @OA\Property(property="province", type="string", example="province"),
+     *              @OA\Property(property="municipality", type="string", example="municipality"),
+     *              @OA\Property(property="address", type="string", example="address"),
+     *              @OA\Property(property="priority", type="string", example="medium"),
+     *              @OA\Property(property="file", type="file", example=""),
+    *         ),
+    *      ),
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -246,7 +264,7 @@ class ComplaintsController extends Controller
      *              @OA\Property(property="province", type="string", example="province"),
      *              @OA\Property(property="municipality", type="string", example="municipality"),
      *              @OA\Property(property="address", type="string", example="address"),
-     *              @OA\Property(property="priority", type="string", example="priority"),
+     *              @OA\Property(property="priority", type="string", example="medium"),
      *              @OA\Property(property="file", type="file", example=""),
      *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
      *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
@@ -284,7 +302,7 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Put (
-     *     path="/api/auth/auth/complaint/update/{id}",
+     *     path="/api/complaints/{id}",
      *     operationId="complaints_update",
      *     tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
@@ -296,6 +314,24 @@ class ComplaintsController extends Controller
      *         required=true,
      *         @OA\Schema(type="number")
      *     ),
+     *     @OA\RequestBody(
+    *         required=true,
+    *         @OA\JsonContent(
+    *               required={"description","departments", "type"},
+     *              @OA\Property(property="identification", type="string", example="00000000000"),
+     *              @OA\Property(property="user_id", type="number", example="1"),
+     *              @OA\Property(property="type", type="string", example="type"),
+     *              @OA\Property(property="departments", type="string", example="departments,m2"),
+     *              @OA\Property(property="anonymous", type="string", example="true"),
+     *              @OA\Property(property="description", type="string", example="description"),
+     *              @OA\Property(property="region", type="string", example="region"),
+     *              @OA\Property(property="province", type="string", example="province"),
+     *              @OA\Property(property="municipality", type="string", example="municipality"),
+     *              @OA\Property(property="address", type="string", example="address"),
+     *              @OA\Property(property="priority", type="string", example="medium"),
+     *              @OA\Property(property="file", type="file", example=""),
+    *         ),
+    *      ),
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -341,7 +377,7 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/auth/auth/complaint/delete/{id}",
+     *      path="/api/complaints/{id}",
      *      operationId="complaint_delete",
      *      tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
