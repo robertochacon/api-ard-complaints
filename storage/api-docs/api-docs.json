@@ -329,6 +329,10 @@
                                         "type": "string",
                                         "example": "media"
                                     },
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "reason"
+                                    },
                                     "file": {
                                         "type": "file",
                                         "example": ""
@@ -1008,6 +1012,10 @@
                                     "priority": {
                                         "type": "string",
                                         "example": "media"
+                                    },
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "reason"
                                     },
                                     "status": {
                                         "type": "string",
