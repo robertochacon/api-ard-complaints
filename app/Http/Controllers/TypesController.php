@@ -37,7 +37,7 @@ class TypesController extends Controller
      */
     public function index()
     {
-        $types = Types::with('departaments')->get();
+        $types = Types::with('department')->get();
         return response()->json(["data"=>$types],200);
     }
 
@@ -78,7 +78,7 @@ class TypesController extends Controller
 
     public function watch($id){
         try{
-            $types = Types::find($id)->with('departaments')->get();;
+            $types = Types::find($id)->with('department')->get();;
             return response()->json(["data"=>$types],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
@@ -98,7 +98,7 @@ class TypesController extends Controller
      *         @OA\JsonContent(
      *            required={"name","department_id"},
      *            @OA\Property(property="name", type="string", format="string", example="Name"),
-     *            @OA\Property(property="department_id", type="string", format="string", example="department_id"),
+     *            @OA\Property(property="department_id", type="number", format="string", example="1"),
      *         ),
      *      ),
      *     @OA\Response(
@@ -137,6 +137,7 @@ class TypesController extends Controller
      *         @OA\JsonContent(
      *            required={"name"},
      *            @OA\Property(property="name", type="string", format="string", example="Name"),
+     *            @OA\Property(property="department_id", type="number", format="string", example="1"),
      *         ),
      *      ),
      *     @OA\Response(

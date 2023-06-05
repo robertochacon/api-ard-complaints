@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        $users = User::with('departaments')->get();
         return response()->json(["data"=>$users],200);
     }
 
@@ -86,7 +86,7 @@ class UserController extends Controller
 
     public function watch($id){
         try{
-            $user = User::find($id);
+            $user = User::find($id)->with('departaments')->get();;
             return response()->json(["data"=>$user],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"fail"],200);
@@ -110,6 +110,7 @@ class UserController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
+    *               @OA\Property(property="department_id", type="number", example="1"),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="name", type="string", example="Roberto"),
      *              @OA\Property(property="role", type="string", example="user"),
@@ -120,6 +121,7 @@ class UserController extends Controller
      *         description="OK",
      *         @OA\JsonContent(
      *              @OA\Property(property="id", type="number", example=1),
+     *              @OA\Property(property="departaments", type="string", example="[]"),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="name", type="string", example="Roberto"),
      *              @OA\Property(property="role", type="string", example="user"),

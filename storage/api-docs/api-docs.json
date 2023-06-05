@@ -73,6 +73,7 @@
                         "application/json": {
                             "schema": {
                                 "required": [
+                                    "department_id",
                                     "identification",
                                     "name",
                                     "email",
@@ -80,6 +81,9 @@
                                     "password_confirmation"
                                 ],
                                 "properties": {
+                                    "department_id": {
+                                        "type": "string"
+                                    },
                                     "identification": {
                                         "type": "string"
                                     },
@@ -289,13 +293,13 @@
                                         "type": "number",
                                         "example": "1"
                                     },
-                                    "type": {
-                                        "type": "string",
-                                        "example": "type"
+                                    "type_id": {
+                                        "type": "number",
+                                        "example": "1"
                                     },
-                                    "departments": {
-                                        "type": "string",
-                                        "example": "departments,m2"
+                                    "department_id": {
+                                        "type": "number",
+                                        "example": "1"
                                     },
                                     "anonymous": {
                                         "type": "string",
@@ -323,7 +327,7 @@
                                     },
                                     "priority": {
                                         "type": "string",
-                                        "example": "medium"
+                                        "example": "media"
                                     },
                                     "file": {
                                         "type": "file",
@@ -356,11 +360,11 @@
                                         },
                                         "type": {
                                             "type": "string",
-                                            "example": "type"
+                                            "example": "[]"
                                         },
-                                        "departments": {
+                                        "department": {
                                             "type": "string",
-                                            "example": "departments,m2"
+                                            "example": "[]"
                                         },
                                         "anonymous": {
                                             "type": "string",
@@ -388,7 +392,11 @@
                                         },
                                         "priority": {
                                             "type": "string",
-                                            "example": "medium"
+                                            "example": "media"
+                                        },
+                                        "reason": {
+                                            "type": "string",
+                                            "example": "reason"
                                         },
                                         "file": {
                                             "type": "file",
@@ -401,6 +409,135 @@
                                         "updated_at": {
                                             "type": "string",
                                             "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Cliente] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/complaints/history": {
+            "get": {
+                "tags": [
+                    "Complaints"
+                ],
+                "summary": "All complaints history",
+                "description": "All complaints history",
+                "operationId": "all_complaints_history",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "code": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "identification": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "user_id": {
+                                            "type": "number",
+                                            "example": ""
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "departments": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "anonymous": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "region": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "province": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "codmunicipalitye": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "address": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "priority": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "file": {
+                                            "type": "file",
+                                            "example": ""
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T00:09:16.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
                                         }
                                     },
                                     "type": "object"
@@ -836,13 +973,13 @@
                                         "type": "number",
                                         "example": "1"
                                     },
-                                    "type": {
-                                        "type": "string",
-                                        "example": "type"
+                                    "type_id": {
+                                        "type": "number",
+                                        "example": "1"
                                     },
-                                    "departments": {
-                                        "type": "string",
-                                        "example": "departments,m2"
+                                    "department_id": {
+                                        "type": "number",
+                                        "example": "1"
                                     },
                                     "anonymous": {
                                         "type": "string",
@@ -870,7 +1007,11 @@
                                     },
                                     "priority": {
                                         "type": "string",
-                                        "example": "medium"
+                                        "example": "media"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "proceso"
                                     },
                                     "file": {
                                         "type": "file",
@@ -935,15 +1076,15 @@
                                         },
                                         "address": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "address"
                                         },
                                         "priority": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "media"
                                         },
                                         "status": {
                                             "type": "string",
-                                            "example": ""
+                                            "example": "proceso"
                                         },
                                         "file": {
                                             "type": "file",
@@ -1399,12 +1540,12 @@
                                 ],
                                 "properties": {
                                     "complaint_id": {
-                                        "type": "string",
+                                        "type": "number",
                                         "format": "string",
                                         "example": "complaint_id"
                                     },
                                     "user_id": {
-                                        "type": "string",
+                                        "type": "number",
                                         "format": "string",
                                         "example": "user_id"
                                     },
@@ -1619,9 +1760,9 @@
                                         "example": "Name"
                                     },
                                     "department_id": {
-                                        "type": "string",
+                                        "type": "number",
                                         "format": "string",
-                                        "example": "department_id"
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -1757,6 +1898,11 @@
                                         "type": "string",
                                         "format": "string",
                                         "example": "Name"
+                                    },
+                                    "department_id": {
+                                        "type": "number",
+                                        "format": "string",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -2018,6 +2164,10 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "department_id": {
+                                        "type": "number",
+                                        "example": "1"
+                                    },
                                     "identification": {
                                         "type": "string",
                                         "example": "00000000000"
@@ -2046,6 +2196,10 @@
                                         "id": {
                                             "type": "number",
                                             "example": 1
+                                        },
+                                        "departaments": {
+                                            "type": "string",
+                                            "example": "[]"
                                         },
                                         "identification": {
                                             "type": "string",

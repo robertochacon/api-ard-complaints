@@ -12,7 +12,7 @@ class Types extends Model
         'id','department_id','name','status'
     ];
 
-    public function departaments()
+    public function department()
     {
     	return $this->belongsTo('App\Models\Departaments', 'department_id');
     }

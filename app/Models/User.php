@@ -19,11 +19,17 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
+        'department_id',
         'identification',
         'name',
         'email',
         'password',
     ];
+
+    public function departaments()
+    {
+    	return $this->belongsTo('App\Models\Departaments', 'department_id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

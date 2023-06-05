@@ -57,7 +57,60 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        $complaints = Complaints::with('user')->get();
+        $complaints = Complaints::with(['department','type','user'])->get();
+        return response()->json(["data"=>$complaints],200);
+    }
+
+    /**
+     * @OA\Get (
+     *     path="/api/complaints/history",
+     *      operationId="all_complaints_history",
+     *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
+     *     summary="All complaints history",
+     *     description="All complaints history",
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *         @OA\JsonContent(
+     *              @OA\Property(property="id", type="number", example=1),
+     *              @OA\Property(property="code", type="string", example=""),
+     *              @OA\Property(property="identification", type="string", example=""),
+     *              @OA\Property(property="user_id", type="number", example=""),
+     *              @OA\Property(property="type", type="string", example=""),
+     *              @OA\Property(property="departments", type="string", example=""),
+     *              @OA\Property(property="anonymous", type="string", example=""),
+     *              @OA\Property(property="description", type="string", example=""),
+     *              @OA\Property(property="region", type="string", example=""),
+     *              @OA\Property(property="province", type="string", example=""),
+     *              @OA\Property(property="codmunicipalitye", type="string", example=""),
+     *              @OA\Property(property="address", type="string", example=""),
+     *              @OA\Property(property="priority", type="string", example=""),
+     *              @OA\Property(property="status", type="string", example=""),
+     *              @OA\Property(property="file", type="file", example=""),
+     *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
+     *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
+     *         )
+     *     ),
+    *      @OA\Response(
+    *          response=401,
+    *          description="Unauthorized",
+    *          @OA\JsonContent(
+    *               @OA\Property(property="id", type="number", example=1),
+    *           )
+    *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="NOT FOUND",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Cliente] #id"),
+     *          )
+     *      )
+     * )
+     */
+    public function history()
+    {
+        $complaints = Complaints::where('status',['finalizada','rechazada'])->with(['department','type','user'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -110,7 +163,7 @@ class ComplaintsController extends Controller
 
     public function all_by_identification($identification)
     {
-        $complaints = Complaints::where("identification", $identification)->get();
+        $complaints = Complaints::where("identification", $identification)->with(['department','type','user'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -163,7 +216,7 @@ class ComplaintsController extends Controller
 
     public function all_by_user($user_id)
     {
-        $complaints = Complaints::where("user_id", $user_id)->get();
+        $complaints = Complaints::where("user_id", $user_id)->with(['department','type','user'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -216,7 +269,7 @@ class ComplaintsController extends Controller
 
     public function watch($id){
         try{
-            $document = Complaints::where('id','=',$id)->get();
+            $document = Complaints::where('id','=',$id)->with(['department','type','user'])->get();
             return response()->json(["data"=>$document],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
@@ -237,15 +290,15 @@ class ComplaintsController extends Controller
     *               required={"description","departments", "type"},
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="user_id", type="number", example="1"),
-     *              @OA\Property(property="type", type="string", example="type"),
-     *              @OA\Property(property="departments", type="string", example="departments,m2"),
+     *              @OA\Property(property="type_id", type="number", example="1"),
+     *              @OA\Property(property="department_id", type="number", example="1"),
      *              @OA\Property(property="anonymous", type="string", example="true"),
      *              @OA\Property(property="description", type="string", example="description"),
      *              @OA\Property(property="region", type="string", example="region"),
      *              @OA\Property(property="province", type="string", example="province"),
      *              @OA\Property(property="municipality", type="string", example="municipality"),
      *              @OA\Property(property="address", type="string", example="address"),
-     *              @OA\Property(property="priority", type="string", example="medium"),
+     *              @OA\Property(property="priority", type="string", example="media"),
      *              @OA\Property(property="file", type="file", example=""),
     *         ),
     *      ),
@@ -256,15 +309,16 @@ class ComplaintsController extends Controller
      *              @OA\Property(property="id", type="number", example=1),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="user_id", type="number", example="1"),
-     *              @OA\Property(property="type", type="string", example="type"),
-     *              @OA\Property(property="departments", type="string", example="departments,m2"),
+     *              @OA\Property(property="type", type="string", example="[]"),
+     *              @OA\Property(property="department", type="string", example="[]"),
      *              @OA\Property(property="anonymous", type="string", example="true"),
      *              @OA\Property(property="description", type="string", example="description"),
      *              @OA\Property(property="region", type="string", example="region"),
      *              @OA\Property(property="province", type="string", example="province"),
      *              @OA\Property(property="municipality", type="string", example="municipality"),
      *              @OA\Property(property="address", type="string", example="address"),
-     *              @OA\Property(property="priority", type="string", example="medium"),
+     *              @OA\Property(property="priority", type="string", example="media"),
+     *              @OA\Property(property="reason", type="string", example="reason"),
      *              @OA\Property(property="file", type="file", example=""),
      *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
      *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
@@ -320,15 +374,16 @@ class ComplaintsController extends Controller
     *               required={"description","departments", "type"},
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="user_id", type="number", example="1"),
-     *              @OA\Property(property="type", type="string", example="type"),
-     *              @OA\Property(property="departments", type="string", example="departments,m2"),
+     *              @OA\Property(property="type_id", type="number", example="1"),
+     *              @OA\Property(property="department_id", type="number", example="1"),
      *              @OA\Property(property="anonymous", type="string", example="true"),
      *              @OA\Property(property="description", type="string", example="description"),
      *              @OA\Property(property="region", type="string", example="region"),
      *              @OA\Property(property="province", type="string", example="province"),
      *              @OA\Property(property="municipality", type="string", example="municipality"),
      *              @OA\Property(property="address", type="string", example="address"),
-     *              @OA\Property(property="priority", type="string", example="medium"),
+     *              @OA\Property(property="priority", type="string", example="media"),
+     *              @OA\Property(property="status", type="string", example="proceso"),
      *              @OA\Property(property="file", type="file", example=""),
     *         ),
     *      ),
@@ -347,9 +402,9 @@ class ComplaintsController extends Controller
      *              @OA\Property(property="region", type="string", example=""),
      *              @OA\Property(property="province", type="string", example=""),
      *              @OA\Property(property="municipality", type="string", example=""),
-     *              @OA\Property(property="address", type="string", example=""),
-     *              @OA\Property(property="priority", type="string", example=""),
-     *              @OA\Property(property="status", type="string", example=""),
+     *              @OA\Property(property="address", type="string", example="address"),
+     *              @OA\Property(property="priority", type="string", example="media"),
+     *              @OA\Property(property="status", type="string", example="proceso"),
      *              @OA\Property(property="file", type="file", example=""),
      *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
      *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
