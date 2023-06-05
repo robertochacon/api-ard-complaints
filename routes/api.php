@@ -7,6 +7,7 @@ use App\Http\Controllers\TypesController;
 use App\Http\Controllers\DepartamentsController;
 use App\Http\Controllers\ComplaintsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RecordsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -60,6 +61,10 @@ Route::group([
     Route::put('/users/{id}/', [UserController::class, 'update']);
     Route::delete('/users/{id}/', [UserController::class, 'delete']);
 
-
+    //records
+    Route::get('/records/', [RecordsController::class, 'index']);
+    Route::get('/records/{complaint_id}/', [RecordsController::class, 'watch']);
+    Route::post('/records/', [RecordsController::class, 'register']);
+    Route::delete('/records/{id}/', [RecordsController::class, 'delete']);
 
 });

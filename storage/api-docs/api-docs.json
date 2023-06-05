@@ -1325,6 +1325,217 @@
                 ]
             }
         },
+        "/api/records": {
+            "get": {
+                "tags": [
+                    "Records"
+                ],
+                "summary": "All records",
+                "description": "All records",
+                "operationId": "all_records",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "complaint": {
+                                            "type": "string",
+                                            "example": "[]"
+                                        },
+                                        "user": {
+                                            "type": "string",
+                                            "example": "[]"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "status"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T00:09:16.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Records"
+                ],
+                "summary": "Store record",
+                "description": "Store record",
+                "operationId": "store_record",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nacompaint_idme",
+                                    "user_id",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "compaint_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "compaint_id"
+                                    },
+                                    "user_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "user_id"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "status"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/records/{complaint_id}": {
+            "get": {
+                "tags": [
+                    "Records"
+                ],
+                "summary": "See record",
+                "description": "See record",
+                "operationId": "watch_record",
+                "parameters": [
+                    {
+                        "name": "complaint_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "NOT FOUND",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Cliente] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/records/{id}": {
+            "delete": {
+                "tags": [
+                    "Records"
+                ],
+                "summary": "Delete record",
+                "description": "Delete record",
+                "operationId": "delete_record",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
         "/api/types": {
             "get": {
                 "tags": [
