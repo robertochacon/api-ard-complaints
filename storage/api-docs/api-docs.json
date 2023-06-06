@@ -171,11 +171,11 @@
                                             "type": "number",
                                             "example": ""
                                         },
-                                        "type": {
+                                        "type_id": {
                                             "type": "string",
                                             "example": ""
                                         },
-                                        "departments": {
+                                        "department_id": {
                                             "type": "string",
                                             "example": ""
                                         },
@@ -476,11 +476,11 @@
                                             "type": "number",
                                             "example": ""
                                         },
-                                        "type": {
+                                        "type_id": {
                                             "type": "string",
                                             "example": ""
                                         },
-                                        "departments": {
+                                        "department_id": {
                                             "type": "string",
                                             "example": ""
                                         },
@@ -615,11 +615,11 @@
                                             "type": "number",
                                             "example": ""
                                         },
-                                        "type": {
+                                        "type_id": {
                                             "type": "string",
                                             "example": ""
                                         },
-                                        "departments": {
+                                        "department_id": {
                                             "type": "string",
                                             "example": ""
                                         },
@@ -738,11 +738,11 @@
                                             "type": "number",
                                             "example": ""
                                         },
-                                        "type": {
+                                        "type_id": {
                                             "type": "string",
                                             "example": ""
                                         },
-                                        "departments": {
+                                        "department_id": {
                                             "type": "string",
                                             "example": ""
                                         },
@@ -861,11 +861,11 @@
                                             "type": "number",
                                             "example": ""
                                         },
-                                        "type": {
+                                        "type_id": {
                                             "type": "string",
                                             "example": ""
                                         },
-                                        "departments": {
+                                        "department_id": {
                                             "type": "string",
                                             "example": ""
                                         },
