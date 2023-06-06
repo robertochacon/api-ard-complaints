@@ -169,7 +169,7 @@ class ComplaintsController extends Controller
      */
     public function all_by_department($department_id)
     {
-        $complaints = Complaints::where('department_id',$department_id)->with(['type','user'])->get();
+        $complaints = Complaints::where('department_id',$department_id)->with(['department','type','user'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
