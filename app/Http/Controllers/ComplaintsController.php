@@ -348,6 +348,8 @@ class ComplaintsController extends Controller
     *         required=true,
     *         @OA\JsonContent(
     *               required={"description","departments", "type"},
+     *              @OA\Property(property="name", type="string", example="name"),
+     *              @OA\Property(property="phone", type="string", example="phone"),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="user_id", type="number", example="1"),
      *              @OA\Property(property="type_id", type="number", example="1"),
@@ -368,6 +370,8 @@ class ComplaintsController extends Controller
      *         description="OK",
      *         @OA\JsonContent(
      *              @OA\Property(property="id", type="number", example=1),
+     *              @OA\Property(property="name", type="string", example="name"),
+     *              @OA\Property(property="phone", type="string", example="phone"),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="user_id", type="number", example="1"),
      *              @OA\Property(property="type", type="boolean", example="[]"),
@@ -433,6 +437,8 @@ class ComplaintsController extends Controller
     *         required=true,
     *         @OA\JsonContent(
     *               required={"description","departments", "type"},
+     *              @OA\Property(property="name", type="string", example="name"),
+     *              @OA\Property(property="phone", type="string", example="phone"),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="user_id", type="number", example="1"),
      *              @OA\Property(property="type_id", type="number", example="1"),
@@ -455,6 +461,8 @@ class ComplaintsController extends Controller
      *         @OA\JsonContent(
      *              @OA\Property(property="id", type="number", example=1),
      *              @OA\Property(property="code", type="string", example=""),
+     *              @OA\Property(property="name", type="string", example="name"),
+     *              @OA\Property(property="phone", type="string", example="phone"),
      *              @OA\Property(property="identification", type="string", example=""),
      *              @OA\Property(property="user_id", type="number", example=""),
      *              @OA\Property(property="type", type="string", example=""),

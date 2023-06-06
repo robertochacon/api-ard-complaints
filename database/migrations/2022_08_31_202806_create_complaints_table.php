@@ -16,7 +16,9 @@ class CreateComplaintsTable extends Migration
         Schema::create('complaints', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('code')->default(DB::raw('(UUID())'));
-            $table->uuid('identification')->nullable();
+            $table->string('identification')->nullable();
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('type_id')->nullable();

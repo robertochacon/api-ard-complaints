@@ -10,7 +10,7 @@ class Complaints extends Model
     protected $table = 'complaints';
 
     protected $fillable = [
-        'id','code','identification','user_id','type_id','department_id','anonymous','description','region','province','municipality','address','priority','status','reason','file'
+        'id','code','name','phone','identification','user_id','type_id','department_id','anonymous','description','region','province','municipality','address','priority','status','reason','file'
     ];
 
     public function user()

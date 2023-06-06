@@ -286,6 +286,14 @@
                                     "type"
                                 ],
                                 "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "name"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "phone"
+                                    },
                                     "identification": {
                                         "type": "string",
                                         "example": "00000000000"
@@ -354,6 +362,14 @@
                                         "id": {
                                             "type": "number",
                                             "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "name"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "example": "phone"
                                         },
                                         "identification": {
                                             "type": "string",
@@ -1109,6 +1125,14 @@
                                     "type"
                                 ],
                                 "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "name"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "phone"
+                                    },
                                     "identification": {
                                         "type": "string",
                                         "example": "00000000000"
@@ -1185,6 +1209,14 @@
                                         "code": {
                                             "type": "string",
                                             "example": ""
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "name"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "example": "phone"
                                         },
                                         "identification": {
                                             "type": "string",
