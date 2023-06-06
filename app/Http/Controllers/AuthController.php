@@ -60,7 +60,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $user = User::find(auth()->user()['id'])->with('departaments')->get();
+        $user = User::where('id',auth()->user()['id'])->with('departaments')->get();
         $datos['token'] = $token;
         $datos['user'] = $user;
         return $this->respondWithToken($datos);
