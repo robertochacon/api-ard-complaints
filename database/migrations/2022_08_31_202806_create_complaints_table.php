@@ -23,7 +23,7 @@ class CreateComplaintsTable extends Migration
             $table->foreign('type_id')->references('id')->on('types');
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->string('anonymous')->nullable();
+            $table->boolean('anonymous')->nullable();
             $table->string('description')->nullable();
             $table->string('region')->nullable();
             $table->string('province')->nullable();

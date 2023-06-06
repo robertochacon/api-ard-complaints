@@ -312,7 +312,7 @@ class ComplaintsController extends Controller
      *              @OA\Property(property="user_id", type="number", example="1"),
      *              @OA\Property(property="type", type="boolean", example="[]"),
      *              @OA\Property(property="department", type="string", example="[]"),
-     *              @OA\Property(property="anonymous", type="string", example="true"),
+     *              @OA\Property(property="anonymous", type="boolean", example="true"),
      *              @OA\Property(property="description", type="string", example="description"),
      *              @OA\Property(property="region", type="string", example="region"),
      *              @OA\Property(property="province", type="string", example="province"),

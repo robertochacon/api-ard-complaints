@@ -83,7 +83,7 @@
                                 ],
                                 "properties": {
                                     "department_id": {
-                                        "type": "string"
+                                        "type": "number"
                                     },
                                     "identification": {
                                         "type": "string"
@@ -372,7 +372,7 @@
                                             "example": "[]"
                                         },
                                         "anonymous": {
-                                            "type": "string",
+                                            "type": "boolean",
                                             "example": "true"
                                         },
                                         "description": {

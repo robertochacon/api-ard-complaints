@@ -57,10 +57,13 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        $user = User::find(auth()->user()['id'])->with('departaments')->get();
+        $datos['token'] = $token;
+        $datos['user'] = $user;
+        return $this->respondWithToken($datos);
     }
 
     /**
@@ -122,7 +125,7 @@ class AuthController extends Controller
     *         required=true,
     *         @OA\JsonContent(
     *               required={"department_id","identification","name","email", "password", "password_confirmation"},
-    *               @OA\Property(property="department_id", type="string"),
+    *               @OA\Property(property="department_id", type="number"),
     *               @OA\Property(property="identification", type="string"),
     *               @OA\Property(property="name", type="string"),
     *               @OA\Property(property="email", type="string"),
