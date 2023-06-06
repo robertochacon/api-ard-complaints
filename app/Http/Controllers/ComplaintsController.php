@@ -116,6 +116,66 @@ class ComplaintsController extends Controller
 
     /**
      * @OA\Get (
+     *     path="/api/complaints/department/{department_id}",
+     *      operationId="all_complaints_department",
+     *     tags={"Complaints"},
+     *     security={{ "apiAuth": {} }},
+     *     summary="All complaints department",
+     *     description="All complaints department",
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="department_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *         @OA\JsonContent(
+     *              @OA\Property(property="id", type="number", example=1),
+     *              @OA\Property(property="code", type="string", example=""),
+     *              @OA\Property(property="identification", type="string", example=""),
+     *              @OA\Property(property="user_id", type="number", example=""),
+     *              @OA\Property(property="type_id", type="string", example=""),
+     *              @OA\Property(property="department_id", type="string", example=""),
+     *              @OA\Property(property="anonymous", type="string", example=""),
+     *              @OA\Property(property="description", type="string", example=""),
+     *              @OA\Property(property="region", type="string", example=""),
+     *              @OA\Property(property="province", type="string", example=""),
+     *              @OA\Property(property="codmunicipalitye", type="string", example=""),
+     *              @OA\Property(property="address", type="string", example=""),
+     *              @OA\Property(property="priority", type="string", example=""),
+     *              @OA\Property(property="status", type="string", example=""),
+     *              @OA\Property(property="file", type="file", example=""),
+     *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
+     *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
+     *         )
+     *     ),
+    *      @OA\Response(
+    *          response=401,
+    *          description="Unauthorized",
+    *          @OA\JsonContent(
+    *               @OA\Property(property="id", type="number", example=1),
+    *           )
+    *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="NOT FOUND",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Cliente] #id"),
+     *          )
+     *      )
+     * )
+     */
+    public function all_by_department($department_id)
+    {
+        $complaints = Complaints::where('department_id',$department_id)->with(['type','user'])->get();
+        return response()->json(["data"=>$complaints],200);
+    }
+
+
+    /**
+     * @OA\Get (
      *     path="/api/complaints/person/{identification}",
      *      operationId="complaints_person",
      *     tags={"Complaints"},

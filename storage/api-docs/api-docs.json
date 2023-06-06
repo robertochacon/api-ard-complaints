@@ -574,6 +574,145 @@
                 ]
             }
         },
+        "/api/complaints/department/{department_id}": {
+            "get": {
+                "tags": [
+                    "Complaints"
+                ],
+                "summary": "All complaints department",
+                "description": "All complaints department",
+                "operationId": "all_complaints_department",
+                "parameters": [
+                    {
+                        "name": "department_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "code": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "identification": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "user_id": {
+                                            "type": "number",
+                                            "example": ""
+                                        },
+                                        "type_id": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "department_id": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "anonymous": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "region": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "province": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "codmunicipalitye": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "address": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "priority": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "file": {
+                                            "type": "file",
+                                            "example": ""
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T00:09:16.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Cliente] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
         "/api/complaints/person/{identification}": {
             "get": {
                 "tags": [

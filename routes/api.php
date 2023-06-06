@@ -45,10 +45,11 @@ Route::group([
     Route::post('/departaments/', [DepartamentsController::class, 'register']);
     Route::put('/departaments/{id}/', [DepartamentsController::class, 'update']);
     Route::delete('/departaments/{id}/', [DepartamentsController::class, 'delete']);
-
+    
     //complaints
     Route::get('/complaints/', [ComplaintsController::class, 'index']);
     Route::get('/complaints/history/', [ComplaintsController::class, 'history']);
+    Route::get('/complaints/department/{department_id}', [ComplaintsController::class, 'all_by_department']);
     Route::get('/complaints/person/{identification}', [ComplaintsController::class, 'all_by_identification']);
     Route::get('/complaints/user/{user_id}', [ComplaintsController::class, 'all_by_user']);
     Route::get('/complaints/{id}/', [ComplaintsController::class, 'watch']);

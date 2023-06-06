@@ -15,11 +15,23 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('departments')->insert([
-            ['name' => 'Department example']
+            ['name' => 'COM'],
+            ['name' => 'M2'],
+            ['name' => 'Capitanía de puertos'],
+            ['name' => 'Pesca'],
         ]);
 
         DB::table('types')->insert([
-            ['name' => 'Type example']
+            ['department_id' => '3','name' => 'Viajes ilegales'],
+            ['department_id' => '3','name' => 'Tráfico maritimo'],
+            ['department_id' => '1','name' => 'Trata de personas'],
+            ['department_id' => '3','name' => 'Construcción ilegal de embarcaciones'],
+            ['department_id' => '1','name' => 'Violación a los 60mt2 de construcción'],
+            ['department_id' => '4','name' => 'Pesca ilegal'],
+            ['department_id' => '2','name' => 'Daños al medio ambiente'],
+            ['department_id' => '2','name' => 'Sustancias controladas'],
+            ['department_id' => '2','name' => 'Corrupción'],
+            ['department_id' => '2','name' => 'Otras']
         ]);
 
         DB::table('users')->insert([
