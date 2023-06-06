@@ -329,7 +329,7 @@ class ComplaintsController extends Controller
 
     public function watch($id){
         try{
-            $document = Complaints::find($id)->with(['department','type','user'])->get();
+            $document = Complaints::where('id',$id)->with(['department','type','user'])->first();
             return response()->json(["data"=>$document],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
