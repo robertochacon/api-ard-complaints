@@ -58,7 +58,7 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        $complaints = Complaints::with(['department','type','user'])->get();
+        $complaints = Complaints::with(['department','type','user.departaments'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -111,7 +111,7 @@ class ComplaintsController extends Controller
      */
     public function history()
     {
-        $complaints = Complaints::where('status',['finalizada','rechazada'])->with(['department','type','user'])->get();
+        $complaints = Complaints::where('status',['finalizada','rechazada'])->with(['department','type','user.departaments'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -170,7 +170,7 @@ class ComplaintsController extends Controller
      */
     public function all_by_department($department_id)
     {
-        $complaints = Complaints::where('department_id',$department_id)->with(['department','type','user'])->get();
+        $complaints = Complaints::where('department_id',$department_id)->with(['department','type','user.departaments'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -224,7 +224,7 @@ class ComplaintsController extends Controller
 
     public function all_by_identification($identification)
     {
-        $complaints = Complaints::where("identification", $identification)->with(['department','type','user'])->get();
+        $complaints = Complaints::where("identification", $identification)->with(['department','type','user.departaments'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -277,7 +277,7 @@ class ComplaintsController extends Controller
 
     public function all_by_user($user_id)
     {
-        $complaints = Complaints::where("user_id", $user_id)->with(['department','type','user'])->get();
+        $complaints = Complaints::where("user_id", $user_id)->with(['department','type','user.departaments'])->get();
         return response()->json(["data"=>$complaints],200);
     }
 
@@ -330,7 +330,7 @@ class ComplaintsController extends Controller
 
     public function watch($id){
         try{
-            $document = Complaints::where('id',$id)->with(['department','type','user'])->first();
+            $document = Complaints::where('id',$id)->with(['department','type','user.departaments'])->first();
             return response()->json(["data"=>$document],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
