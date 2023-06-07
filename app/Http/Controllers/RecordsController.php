@@ -36,7 +36,7 @@ class RecordsController extends Controller
      */
     public function index()
     {
-        $record = Records::with(['complaint','user'])->get();
+        $record = Records::with(['complaint','user.departaments'])->get();
         return response()->json(["data"=>$record],200);
     }
 
@@ -67,7 +67,7 @@ class RecordsController extends Controller
 
     public function watch($complaint_id){
         try{
-            $record = Records::where("complaint_id", $complaint_id)->with('user')->get();
+            $record = Records::where("complaint_id", $complaint_id)->with('user.departaments')->get();
             return response()->json(["data"=>$record],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
