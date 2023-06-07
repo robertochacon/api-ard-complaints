@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Complaints;
+use App\Models\Types;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -348,12 +349,11 @@ class ComplaintsController extends Controller
     *         required=true,
     *         @OA\JsonContent(
     *               required={"description","departments", "type"},
+     *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="name", type="string", example="name"),
      *              @OA\Property(property="phone", type="string", example="phone"),
-     *              @OA\Property(property="identification", type="string", example="00000000000"),
      *              @OA\Property(property="user_id", type="number", example="1"),
      *              @OA\Property(property="type_id", type="number", example="1"),
-     *              @OA\Property(property="department_id", type="number", example="1"),
      *              @OA\Property(property="anonymous", type="boolean", example="true"),
      *              @OA\Property(property="description", type="string", example="description"),
      *              @OA\Property(property="region", type="string", example="region"),
@@ -370,12 +370,12 @@ class ComplaintsController extends Controller
      *         description="OK",
      *         @OA\JsonContent(
      *              @OA\Property(property="id", type="number", example=1),
-     *              @OA\Property(property="name", type="string", example="name"),
-     *              @OA\Property(property="phone", type="string", example="phone"),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
+     *              @OA\Property(property="name", type="string", example="name"),
+     *              @OA\Property(property="phone", type="string", example="phone"),     
      *              @OA\Property(property="user_id", type="number", example="1"),
-     *              @OA\Property(property="type", type="boolean", example="[]"),
-     *              @OA\Property(property="department", type="string", example="[]"),
+     *              @OA\Property(property="type_id", type="boolean", example="[]"),
+     *              @OA\Property(property="department_id", type="string", example=""),
      *              @OA\Property(property="anonymous", type="boolean", example="true"),
      *              @OA\Property(property="description", type="string", example="description"),
      *              @OA\Property(property="region", type="string", example="region"),
@@ -402,6 +402,7 @@ class ComplaintsController extends Controller
     public function register(Request $request)
     {
         $complaints = new Complaints(request()->all());
+        $complaints->department_id = Types::where('id',$request->type_id)->first()->department_id;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $filename = time()."-".$file->getClientOriginalName();
@@ -437,12 +438,11 @@ class ComplaintsController extends Controller
     *         required=true,
     *         @OA\JsonContent(
     *               required={"description","departments", "type"},
-     *              @OA\Property(property="name", type="string", example="name"),
-     *              @OA\Property(property="phone", type="string", example="phone"),
      *              @OA\Property(property="identification", type="string", example="00000000000"),
+     *              @OA\Property(property="name", type="string", example="name"),
+     *              @OA\Property(property="phone", type="string", example="phone"),     
      *              @OA\Property(property="user_id", type="number", example="1"),
      *              @OA\Property(property="type_id", type="number", example="1"),
-     *              @OA\Property(property="department_id", type="number", example="1"),
      *              @OA\Property(property="anonymous", type="boolean", example="true"),
      *              @OA\Property(property="description", type="string", example="description"),
      *              @OA\Property(property="region", type="string", example="region"),
@@ -461,9 +461,9 @@ class ComplaintsController extends Controller
      *         @OA\JsonContent(
      *              @OA\Property(property="id", type="number", example=1),
      *              @OA\Property(property="code", type="string", example=""),
+     *              @OA\Property(property="identification", type="string", example=""),
      *              @OA\Property(property="name", type="string", example="name"),
      *              @OA\Property(property="phone", type="string", example="phone"),
-     *              @OA\Property(property="identification", type="string", example=""),
      *              @OA\Property(property="user_id", type="number", example=""),
      *              @OA\Property(property="type", type="string", example=""),
      *              @OA\Property(property="departments", type="string", example=""),

@@ -286,6 +286,10 @@
                                     "type"
                                 ],
                                 "properties": {
+                                    "identification": {
+                                        "type": "string",
+                                        "example": "00000000000"
+                                    },
                                     "name": {
                                         "type": "string",
                                         "example": "name"
@@ -294,19 +298,11 @@
                                         "type": "string",
                                         "example": "phone"
                                     },
-                                    "identification": {
-                                        "type": "string",
-                                        "example": "00000000000"
-                                    },
                                     "user_id": {
                                         "type": "number",
                                         "example": "1"
                                     },
                                     "type_id": {
-                                        "type": "number",
-                                        "example": "1"
-                                    },
-                                    "department_id": {
                                         "type": "number",
                                         "example": "1"
                                     },
@@ -363,6 +359,10 @@
                                             "type": "number",
                                             "example": 1
                                         },
+                                        "identification": {
+                                            "type": "string",
+                                            "example": "00000000000"
+                                        },
                                         "name": {
                                             "type": "string",
                                             "example": "name"
@@ -371,21 +371,17 @@
                                             "type": "string",
                                             "example": "phone"
                                         },
-                                        "identification": {
-                                            "type": "string",
-                                            "example": "00000000000"
-                                        },
                                         "user_id": {
                                             "type": "number",
                                             "example": "1"
                                         },
-                                        "type": {
+                                        "type_id": {
                                             "type": "boolean",
                                             "example": "[]"
                                         },
-                                        "department": {
+                                        "department_id": {
                                             "type": "string",
-                                            "example": "[]"
+                                            "example": ""
                                         },
                                         "anonymous": {
                                             "type": "boolean",
@@ -1125,6 +1121,10 @@
                                     "type"
                                 ],
                                 "properties": {
+                                    "identification": {
+                                        "type": "string",
+                                        "example": "00000000000"
+                                    },
                                     "name": {
                                         "type": "string",
                                         "example": "name"
@@ -1133,19 +1133,11 @@
                                         "type": "string",
                                         "example": "phone"
                                     },
-                                    "identification": {
-                                        "type": "string",
-                                        "example": "00000000000"
-                                    },
                                     "user_id": {
                                         "type": "number",
                                         "example": "1"
                                     },
                                     "type_id": {
-                                        "type": "number",
-                                        "example": "1"
-                                    },
-                                    "department_id": {
                                         "type": "number",
                                         "example": "1"
                                     },
@@ -1210,6 +1202,10 @@
                                             "type": "string",
                                             "example": ""
                                         },
+                                        "identification": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
                                         "name": {
                                             "type": "string",
                                             "example": "name"
@@ -1217,10 +1213,6 @@
                                         "phone": {
                                             "type": "string",
                                             "example": "phone"
-                                        },
-                                        "identification": {
-                                            "type": "string",
-                                            "example": ""
                                         },
                                         "user_id": {
                                             "type": "number",
