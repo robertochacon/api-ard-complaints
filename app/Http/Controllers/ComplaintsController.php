@@ -172,7 +172,7 @@ class ComplaintsController extends Controller
      */
     public function all_by_department($department_id)
     {
-        $complaints = Complaints::where('department_id',$department_id)->with(['department','type','user.departaments'])->get();
+        $complaints = Complaints::where('status',['Enviada','Recibida','Procesando'])->where('department_id',$department_id)->with(['department','type','user.departaments'])->get();
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
