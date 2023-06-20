@@ -128,6 +128,7 @@ class AuthController extends Controller
     *               @OA\Property(property="department_id", type="number"),
     *               @OA\Property(property="identification", type="string"),
     *               @OA\Property(property="name", type="string"),
+    *               @OA\Property(property="last_name", type="string"),
     *               @OA\Property(property="email", type="string"),
     *               @OA\Property(property="password", type="string"),
     *               @OA\Property(property="password_confirmation", type="string")
