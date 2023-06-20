@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('departaments')->get();
+        $users = User::with('departaments')->paginate(10);
         return response()->json(["data"=>$users],200);
     }
 

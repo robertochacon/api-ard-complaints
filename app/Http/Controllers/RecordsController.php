@@ -36,7 +36,7 @@ class RecordsController extends Controller
      */
     public function index()
     {
-        $record = Records::with(['complaint','user.departaments'])->get();
+        $record = Records::with(['complaint','user.departaments'])->paginate(10);
         return response()->json(["data"=>$record],200);
     }
 

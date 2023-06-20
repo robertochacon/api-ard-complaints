@@ -37,7 +37,7 @@ class DepartamentsController extends Controller
      */
     public function index()
     {
-        $departaments = Departaments::all();
+        $departaments = Departaments::paginate(10);
         return response()->json(["data"=>$departaments],200);
     }
 

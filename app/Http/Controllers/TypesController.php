@@ -37,7 +37,7 @@ class TypesController extends Controller
      */
     public function index()
     {
-        $types = Types::with('department')->get();
+        $types = Types::with('department')->paginate(10);
         return response()->json(["data"=>$types],200);
     }
 

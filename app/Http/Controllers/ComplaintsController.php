@@ -58,7 +58,7 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        $complaints = Complaints::with(['department','type','user.departaments'])->get();
+        $complaints = Complaints::with(['department','type','user.departaments'])->paginate(10);
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
@@ -112,7 +112,7 @@ class ComplaintsController extends Controller
      */
     public function history()
     {
-        $complaints = Complaints::where('status',['finalizada','rechazada'])->with(['department','type','user.departaments'])->get();
+        $complaints = Complaints::where('status',['finalizada','rechazada'])->with(['department','type','user.departaments'])->paginate(10);
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
@@ -172,7 +172,7 @@ class ComplaintsController extends Controller
      */
     public function all_by_department($department_id)
     {
-        $complaints = Complaints::where('status',['Enviada','Recibida','Procesando'])->where('department_id',$department_id)->with(['department','type','user.departaments'])->get();
+        $complaints = Complaints::where('status',['Enviada','Recibida','Procesando'])->where('department_id',$department_id)->with(['department','type','user.departaments'])->paginate(10);
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
@@ -227,7 +227,7 @@ class ComplaintsController extends Controller
 
     public function all_by_identification($identification)
     {
-        $complaints = Complaints::where("identification", $identification)->with(['department','type','user.departaments'])->get();
+        $complaints = Complaints::where("identification", $identification)->with(['department','type','user.departaments'])->paginate(10);
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
@@ -281,7 +281,7 @@ class ComplaintsController extends Controller
 
     public function all_by_user($user_id)
     {
-        $complaints = Complaints::where("user_id", $user_id)->with(['department','type','user.departaments'])->get();
+        $complaints = Complaints::where("user_id", $user_id)->with(['department','type','user.departaments'])->paginate(10);
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
