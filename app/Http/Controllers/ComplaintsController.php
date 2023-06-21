@@ -406,23 +406,29 @@ class ComplaintsController extends Controller
 
     public function register(Request $request)
     {
-        $complaints = new Complaints(request()->all());
-        $complaints->department_id = Types::where('id',$request->type_id)->first()->department_id;
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filename = time()."-".$file->getClientOriginalName();
-            $path = "all/{$request->entity_id}/complaints/".$filename;
-            Storage::disk('local')->put("public/{$path}", file_get_contents($request->file));
-            $complaints->file = $path;
-         }
-        // if ($request->hasFile('file')) {
-        //     $temp = file_get_contents($request->file('file'));
-        //     $complaints->file = base64_encode($temp);
-        //     // $path = $request->file('file')->store('/public/complaints');
-        //     // $complaints->file = $path;
-        //  }
-        $complaints->save();
-        return response()->json(["data"=>$complaints],200);
+        try {
+
+            $complaints = new Complaints(request()->all());
+            $complaints->department_id = Types::where('id',$request->type_id)->first()->department_id;
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $filename = time()."-".$file->getClientOriginalName();
+                $path = "all/{$request->entity_id}/complaints/".$filename;
+                Storage::disk('local')->put("public/{$path}", file_get_contents($request->file));
+                $complaints->file = $path;
+                }
+            // if ($request->hasFile('file')) {
+            //     $temp = file_get_contents($request->file('file'));
+            //     $complaints->file = base64_encode($temp);
+            //     // $path = $request->file('file')->store('/public/complaints');
+            //     // $complaints->file = $path;
+            //  }
+            $complaints->save();
+            return response()->json(["msg"=>"success","data"=>$complaints], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(["msg"=>"error","data"=>$th], 500);
+        }
     }
 
     /**
@@ -499,9 +505,9 @@ class ComplaintsController extends Controller
         try{
             $document = Complaints::find($id);
             $document->update($request->all());
-            return response()->json(["data"=>"ok"],200);
+            return response()->json(["msg"=>"success","data"=>"ok"],200);
         }catch (Exception $e) {
-            return response()->json(["data"=>"none"],200);
+            return response()->json(["msg"=>"error","data"=>$e],500);
         }
     }
 
