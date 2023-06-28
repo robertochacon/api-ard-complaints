@@ -112,7 +112,7 @@ class ComplaintsController extends Controller
      */
     public function history()
     {
-        $complaints = Complaints::where('status',['finalizada','rechazada'])->with(['department','type','user.departaments'])->paginate(10);
+        $complaints = Complaints::where('status',['Finalizada','Rechazada'])->with(['department','type','user.departaments'])->paginate(10);
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
