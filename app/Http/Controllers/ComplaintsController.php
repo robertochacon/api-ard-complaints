@@ -17,6 +17,26 @@ class ComplaintsController extends Controller
      *     security={{ "apiAuth": {} }},
      *     summary="All complaints",
      *     description="All complaints",
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="history",
+     *          @OA\Schema(type="boolean")
+     *     ),
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="departament",
+     *          @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="person",
+     *          @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="user",
+     *          @OA\Schema(type="string")
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -56,235 +76,45 @@ class ComplaintsController extends Controller
      *      )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
+        $history = $request->history;
+        $byDepartament = $request->departament;
+        $byPerson = $request->person;
+        $byUser = $request->user;
+
+
+        if ($history==true) {
+            $complaints = Complaints::where('status',['Finalizada','Rechazada'])->with(['department','type','user.departaments'])->paginate(10);
+            $complaints->makeHidden(['file']);
+            return response()->json(["data"=>$complaints],200);
+        }
+        
+
+        if ($byDepartament!==null) {
+            $complaints = Complaints::where('status',['Enviada','Recibida','Procesando'])->where('department_id',$byDepartament)->with(['department','type','user.departaments'])->paginate(10);
+            $complaints->makeHidden(['file']);
+            return response()->json(["data"=>$complaints],200);
+        }
+
+
+        if ($byPerson!==null) {
+            $complaints = Complaints::where("identification", $byPerson)->with(['department','type','user.departaments'])->paginate(10);
+            $complaints->makeHidden(['file']);
+            return response()->json(["data"=>$complaints],200);
+        }
+
+        if ($byUser!==null) {
+            $complaints = Complaints::where("user_id", $byUser)->with(['department','type','user.departaments'])->paginate(10);
+            $complaints->makeHidden(['file']);
+            return response()->json(["data"=>$complaints],200);
+        }
+
         $complaints = Complaints::with(['department','type','user.departaments'])->paginate(10);
         $complaints->makeHidden(['file']);
         return response()->json(["data"=>$complaints],200);
     }
 
-    /**
-     * @OA\Get (
-     *     path="/api/complaints/history",
-     *      operationId="all_complaints_history",
-     *     tags={"Complaints"},
-     *     security={{ "apiAuth": {} }},
-     *     summary="All complaints history",
-     *     description="All complaints history",
-     *     @OA\Response(
-     *         response=200,
-     *         description="OK",
-     *         @OA\JsonContent(
-     *              @OA\Property(property="id", type="number", example=1),
-     *              @OA\Property(property="code", type="string", example=""),
-     *              @OA\Property(property="identification", type="string", example=""),
-     *              @OA\Property(property="user_id", type="number", example=""),
-     *              @OA\Property(property="type_id", type="string", example=""),
-     *              @OA\Property(property="department_id", type="string", example=""),
-     *              @OA\Property(property="anonymous", type="string", example=""),
-     *              @OA\Property(property="description", type="string", example=""),
-     *              @OA\Property(property="region", type="string", example=""),
-     *              @OA\Property(property="province", type="string", example=""),
-     *              @OA\Property(property="codmunicipalitye", type="string", example=""),
-     *              @OA\Property(property="address", type="string", example=""),
-     *              @OA\Property(property="priority", type="string", example=""),
-     *              @OA\Property(property="status", type="string", example=""),
-     *              @OA\Property(property="file", type="file", example=""),
-     *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
-     *         )
-     *     ),
-    *      @OA\Response(
-    *          response=401,
-    *          description="Unauthorized",
-    *          @OA\JsonContent(
-    *               @OA\Property(property="id", type="number", example=1),
-    *           )
-    *       ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="NOT FOUND",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Cliente] #id"),
-     *          )
-     *      )
-     * )
-     */
-    public function history()
-    {
-        $complaints = Complaints::where('status',['Finalizada','Rechazada'])->with(['department','type','user.departaments'])->paginate(10);
-        $complaints->makeHidden(['file']);
-        return response()->json(["data"=>$complaints],200);
-    }
-
-    /**
-     * @OA\Get (
-     *     path="/api/complaints/department/{department_id}",
-     *      operationId="all_complaints_department",
-     *     tags={"Complaints"},
-     *     security={{ "apiAuth": {} }},
-     *     summary="All complaints department",
-     *     description="All complaints department",
-     *     @OA\Parameter(
-     *         in="path",
-     *         name="department_id",
-     *         required=true,
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="OK",
-     *         @OA\JsonContent(
-     *              @OA\Property(property="id", type="number", example=1),
-     *              @OA\Property(property="code", type="string", example=""),
-     *              @OA\Property(property="identification", type="string", example=""),
-     *              @OA\Property(property="user_id", type="number", example=""),
-     *              @OA\Property(property="type_id", type="string", example=""),
-     *              @OA\Property(property="department_id", type="string", example=""),
-     *              @OA\Property(property="anonymous", type="string", example=""),
-     *              @OA\Property(property="description", type="string", example=""),
-     *              @OA\Property(property="region", type="string", example=""),
-     *              @OA\Property(property="province", type="string", example=""),
-     *              @OA\Property(property="codmunicipalitye", type="string", example=""),
-     *              @OA\Property(property="address", type="string", example=""),
-     *              @OA\Property(property="priority", type="string", example=""),
-     *              @OA\Property(property="status", type="string", example=""),
-     *              @OA\Property(property="file", type="file", example=""),
-     *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
-     *         )
-     *     ),
-    *      @OA\Response(
-    *          response=401,
-    *          description="Unauthorized",
-    *          @OA\JsonContent(
-    *               @OA\Property(property="id", type="number", example=1),
-    *           )
-    *       ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="NOT FOUND",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Cliente] #id"),
-     *          )
-     *      )
-     * )
-     */
-    public function all_by_department($department_id)
-    {
-        $complaints = Complaints::where('status',['Enviada','Recibida','Procesando'])->where('department_id',$department_id)->with(['department','type','user.departaments'])->paginate(10);
-        $complaints->makeHidden(['file']);
-        return response()->json(["data"=>$complaints],200);
-    }
-
-
-    /**
-     * @OA\Get (
-     *     path="/api/complaints/person/{identification}",
-     *      operationId="complaints_person",
-     *     tags={"Complaints"},
-     *     security={{ "apiAuth": {} }},
-     *     summary="All complaints of person",
-     *     description="All complaints of person",
-     *     @OA\Parameter(
-     *         in="path",
-     *         name="identification",
-     *         required=true,
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="OK",
-     *         @OA\JsonContent(
-     *              @OA\Property(property="id", type="number", example=1),
-     *              @OA\Property(property="code", type="string", example=""),
-     *              @OA\Property(property="identification", type="string", example=""),
-     *              @OA\Property(property="user_id", type="number", example=""),
-     *              @OA\Property(property="type_id", type="string", example=""),
-     *              @OA\Property(property="department_id", type="string", example=""),
-     *              @OA\Property(property="anonymous", type="string", example=""),
-     *              @OA\Property(property="description", type="string", example=""),
-     *              @OA\Property(property="region", type="string", example=""),
-     *              @OA\Property(property="province", type="string", example=""),
-     *              @OA\Property(property="codmunicipalitye", type="string", example=""),
-     *              @OA\Property(property="address", type="string", example=""),
-     *              @OA\Property(property="priority", type="string", example=""),
-     *              @OA\Property(property="status", type="string", example=""),
-     *              @OA\Property(property="file", type="file", example=""),
-     *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
-     *         )
-     *     ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="NOT FOUND",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Cliente] #id"),
-     *          )
-     *      )
-     * )
-     */
-
-    public function all_by_identification($identification)
-    {
-        $complaints = Complaints::where("identification", $identification)->with(['department','type','user.departaments'])->paginate(10);
-        $complaints->makeHidden(['file']);
-        return response()->json(["data"=>$complaints],200);
-    }
-
-    /**
-     * @OA\Get (
-     *     path="/api/complaints/user/{user_id}",
-     *      operationId="complaints_user",
-     *     tags={"Complaints"},
-     *     security={{ "apiAuth": {} }},
-     *     summary="All complaints of user",
-     *     description="All complaints of user",
-     *     @OA\Parameter(
-     *         in="path",
-     *         name="user_id",
-     *         required=true,
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="OK",
-     *         @OA\JsonContent(
-     *              @OA\Property(property="id", type="number", example=1),
-     *              @OA\Property(property="code", type="string", example=""),
-     *              @OA\Property(property="identification", type="string", example=""),
-     *              @OA\Property(property="user_id", type="number", example=""),
-     *              @OA\Property(property="type_id", type="string", example=""),
-     *              @OA\Property(property="department_id", type="string", example=""),
-     *              @OA\Property(property="anonymous", type="string", example=""),
-     *              @OA\Property(property="description", type="string", example=""),
-     *              @OA\Property(property="region", type="string", example=""),
-     *              @OA\Property(property="province", type="string", example=""),
-     *              @OA\Property(property="codmunicipalitye", type="string", example=""),
-     *              @OA\Property(property="address", type="string", example=""),
-     *              @OA\Property(property="priority", type="string", example=""),
-     *              @OA\Property(property="status", type="string", example=""),
-     *              @OA\Property(property="file", type="file", example=""),
-     *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
-     *         )
-     *     ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="NOT FOUND",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\Cliente] #id"),
-     *          )
-     *      )
-     * )
-     */
-
-    public function all_by_user($user_id)
-    {
-        $complaints = Complaints::where("user_id", $user_id)->with(['department','type','user.departaments'])->paginate(10);
-        $complaints->makeHidden(['file']);
-        return response()->json(["data"=>$complaints],200);
-    }
 
     /**
      * @OA\Get (

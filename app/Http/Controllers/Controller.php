@@ -11,7 +11,7 @@ use Illuminate\Routing\Controller as BaseController;
  * @OA\Info(
  *    title="Api de denuncias",
  *    version="1.0.0",
- *    description="<b>Estados:</b> (Enviada, Recibida, Procesando, Finalizada, Rechazada)<br><b>Prioridades:</b> (Baja, Media, Alta)",
+ *    description="<b>Estados:</b> (Enviada, Recibida, Procesando, Finalizada, Rechazada)<br><b>Prioridades:</b> (Baja, Media, Alta)<br><b>Ejemplo de paginacion: </b>'api/complaints?page=1'",
  * ) 
  * 
  * @OA\SecurityScheme(
