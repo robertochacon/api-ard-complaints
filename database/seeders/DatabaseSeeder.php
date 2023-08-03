@@ -15,23 +15,31 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('departments')->insert([
-            ['name' => 'COM'],
-            ['name' => 'M2'],
-            ['name' => 'Capitanía de puertos'],
-            ['name' => 'Pesca'],
+            ['name' => 'División de Inteligencia Naval (M-2), ARD.'],
+            ['name' => 'Capitania de Puertos, ARD.'],
+            ['name' => 'Dirección Nacional de Pesca, ARD.'],
+            ['name' => 'Dirección de Asuntos Internos, ARD.'],
+            ['name' => 'Dragas y Presas, ARD.'],
+            ['name' => 'Operaciones Maritima (COM).'],
         ]);
 
         DB::table('types')->insert([
-            ['department_id' => '3','name' => 'Viajes ilegales'],
-            ['department_id' => '3','name' => 'Tráfico maritimo'],
-            ['department_id' => '1','name' => 'Trata de personas'],
-            ['department_id' => '3','name' => 'Construcción ilegal de embarcaciones'],
-            ['department_id' => '1','name' => 'Violación a los 60mt2 de construcción'],
-            ['department_id' => '4','name' => 'Pesca ilegal'],
-            ['department_id' => '2','name' => 'Daños al medio ambiente'],
-            ['department_id' => '2','name' => 'Sustancias controladas'],
-            ['department_id' => '2','name' => 'Corrupción'],
-            ['department_id' => '2','name' => 'Otras']
+            ['department_id' => '1','name' => 'Viajes ilegales'],
+            ['department_id' => '1','name' => 'Robo de embarcaciones'],
+            ['department_id' => '1','name' => 'Pérdida de embarcaciones'],
+
+            ['department_id' => '2','name' => 'Construccion ilegal de embarcaciones'],
+            ['department_id' => '2','name' => 'Violacion a los 60 Mt2 de Construcción'],
+            ['department_id' => '2','name' => 'Derrame de combustibles'],
+            ['department_id' => '2','name' => 'Embarcaciones a alta velocidad (Recreo)'],
+
+            ['department_id' => '3','name' => 'Pesca Ilega'],
+
+            ['department_id' => '4','name' => 'Corrupción de miembros'],
+
+            ['department_id' => '5','name' => 'Acumulación de desechos solicitando'],
+
+            ['department_id' => '6','name' => 'Embarcaciones con perfil sospechoso']
         ]);
 
         DB::table('users')->insert([
