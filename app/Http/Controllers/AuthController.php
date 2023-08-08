@@ -114,7 +114,7 @@ class AuthController extends Controller
         ]);
     }
 
-        /**
+    /**
     * @OA\Post(
     * path="/api/register",
     * operationId="Register",
@@ -130,27 +130,16 @@ class AuthController extends Controller
     *               @OA\Property(property="name", type="string"),
     *               @OA\Property(property="last_name", type="string"),
     *               @OA\Property(property="email", type="string"),
+    *               @OA\Property(property="phone", type="string"),
     *               @OA\Property(property="password", type="string"),
     *               @OA\Property(property="password_confirmation", type="string")
     *         ),
     *      ),
     *      @OA\Response(
-    *          response=201,
-    *          description="Register Successfully",
-    *          @OA\JsonContent()
-    *       ),
-    *      @OA\Response(
     *          response=200,
     *          description="Register Successfully",
     *          @OA\JsonContent()
     *       ),
-    *      @OA\Response(
-    *          response=422,
-    *          description="Unprocessable Entity",
-    *          @OA\JsonContent()
-    *       ),
-    *      @OA\Response(response=400, description="Bad request"),
-    *      @OA\Response(response=404, description="Resource Not Found"),
     * )
     */
 

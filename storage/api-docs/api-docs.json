@@ -97,6 +97,9 @@
                                     "email": {
                                         "type": "string"
                                     },
+                                    "phone": {
+                                        "type": "string"
+                                    },
                                     "password": {
                                         "type": "string"
                                     },
@@ -110,14 +113,6 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Register Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
                     "200": {
                         "description": "Register Successfully",
                         "content": {
@@ -125,20 +120,6 @@
                                 "schema": {}
                             }
                         }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
                     }
                 }
             }
