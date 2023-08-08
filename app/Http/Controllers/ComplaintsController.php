@@ -103,7 +103,7 @@ class ComplaintsController extends Controller
         }
         
         if ($byDepartament!==null) {
-            $complaints = Complaints::where('status',['Enviada','Recibida','Procesando'])->where('department_id',$byDepartament)->with(['department','type','user.departaments'])->paginate(10);
+            $complaints = Complaints::whereIn('status',['Enviada','Recibida','Procesando'])->where('department_id',$byDepartament)->with(['department','type','user.departaments'])->paginate(10);
             $complaints->makeHidden(['file']);
             return response()->json(["data"=>$complaints],200);
         }
