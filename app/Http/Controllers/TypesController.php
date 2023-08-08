@@ -152,7 +152,7 @@ class TypesController extends Controller
 
     public function update(Request $request, $id){
         try{
-            $orders = Types::find($id);
+            $orders = Types::where('id',$id)->first();
             $orders->update($request->all());
             return response()->json(["data"=>"ok"],200);
         }catch (Exception $e) {

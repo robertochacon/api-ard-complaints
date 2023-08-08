@@ -37,6 +37,16 @@ class ComplaintsController extends Controller
      *          name="user",
      *          @OA\Schema(type="string")
      *     ),
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="name",
+     *          @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="status",
+     *          @OA\Schema(type="string")
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -82,21 +92,21 @@ class ComplaintsController extends Controller
         $byDepartament = $request->departament;
         $byPerson = $request->person;
         $byUser = $request->user;
+        $name = $request->name;
+        $status = $request->status;
 
 
         if ($history==true) {
-            $complaints = Complaints::where('status',['Finalizada','Rechazada'])->with(['department','type','user.departaments'])->paginate(10);
+            $complaints = Complaints::whereIn('status',['Finalizada','Rechazada'])->with(['department','type','user.departaments'])->paginate(10);
             $complaints->makeHidden(['file']);
             return response()->json(["data"=>$complaints],200);
         }
         
-
         if ($byDepartament!==null) {
             $complaints = Complaints::where('status',['Enviada','Recibida','Procesando'])->where('department_id',$byDepartament)->with(['department','type','user.departaments'])->paginate(10);
             $complaints->makeHidden(['file']);
             return response()->json(["data"=>$complaints],200);
         }
-
 
         if ($byPerson!==null) {
             $complaints = Complaints::where("identification", $byPerson)->with(['department','type','user.departaments'])->paginate(10);
@@ -106,6 +116,18 @@ class ComplaintsController extends Controller
 
         if ($byUser!==null) {
             $complaints = Complaints::where("user_id", $byUser)->with(['department','type','user.departaments'])->paginate(10);
+            $complaints->makeHidden(['file']);
+            return response()->json(["data"=>$complaints],200);
+        }
+
+        if ($name!==null) {
+            $complaints = Complaints::where("name", "like", "%$name%")->with(['department','type','user.departaments'])->paginate(10);
+            $complaints->makeHidden(['file']);
+            return response()->json(["data"=>$complaints],200);
+        }
+
+        if ($status!==null) {
+            $complaints = Complaints::where("status", $status)->with(['department','type','user.departaments'])->paginate(10);
             $complaints->makeHidden(['file']);
             return response()->json(["data"=>$complaints],200);
         }
@@ -333,9 +355,9 @@ class ComplaintsController extends Controller
 
     public function update(Request $request, $id){
         try{
-            $document = Complaints::find($id);
-            $document->update($request->all());
-            return response()->json(["msg"=>"success","data"=>"ok"],200);
+            $complaints = Complaints::where('id',$id)->first();
+            $complaints->update($request->all());
+            return response()->json(["msg"=>"success","data"=>$complaints],200);
         }catch (Exception $e) {
             return response()->json(["msg"=>"error","data"=>$e],500);
         }

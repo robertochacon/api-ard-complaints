@@ -14,8 +14,8 @@ class DepartamentsController extends Controller
      *      operationId="all_departaments",
      *     tags={"Departments"},
      *     security={{ "apiAuth": {} }},
-     *     summary="All adepartament",
-     *     description="All adepartament",
+     *     summary="All adepartment",
+     *     description="All adepartment",
      *     @OA\Response(
      *         response=200,
      *         description="OK",
@@ -47,8 +47,8 @@ class DepartamentsController extends Controller
      *     operationId="watch_departament",
      *     tags={"Departments"},
      *     security={{ "apiAuth": {} }},
-     *     summary="See adepartament",
-     *     description="See adepartament",
+     *     summary="See adepartment",
+     *     description="See adepartment",
      *    @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -89,8 +89,8 @@ class DepartamentsController extends Controller
      *      operationId="store_departament",
      *      tags={"Departments"},
      *     security={{ "apiAuth": {} }},
-     *      summary="Store adepartament",
-     *      description="Store adepartament",
+     *      summary="Store adepartment",
+     *      description="Store adepartment",
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -120,8 +120,8 @@ class DepartamentsController extends Controller
      *      operationId="update_departament",
      *      tags={"Departments"},
      *     security={{ "apiAuth": {} }},
-     *      summary="Update adepartament",
-     *      description="Update adepartament",
+     *      summary="Update adepartment",
+     *      description="Update adepartment",
      *     @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -147,8 +147,8 @@ class DepartamentsController extends Controller
 
     public function update(Request $request, $id){
         try{
-            $orders = Departaments::find($id);
-            $orders->update($request->all());
+            $department = Departaments::where('id',$id)->first();
+            $department->update($request->all());
             return response()->json(["data"=>"ok"],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"fail"],200);
@@ -161,8 +161,8 @@ class DepartamentsController extends Controller
      *      operationId="delete_departament",
      *      tags={"Departments"},
      *     security={{ "apiAuth": {} }},
-     *      summary="Delete adepartament",
-     *      description="Delete adepartament",
+     *      summary="Delete adepartment",
+     *      description="Delete adepartment",
      *    @OA\Parameter(
      *         in="path",
      *         name="id",

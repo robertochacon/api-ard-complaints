@@ -141,7 +141,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
         try{
-            $user = User::find($id);
+            $user = User::where('id',$id)->first();
             $user->update($request->all());
             return response()->json(["data"=>"ok"],200);
         }catch (Exception $e) {

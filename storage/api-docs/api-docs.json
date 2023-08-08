@@ -179,6 +179,20 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -868,8 +882,8 @@
                 "tags": [
                     "Departments"
                 ],
-                "summary": "All adepartament",
-                "description": "All adepartament",
+                "summary": "All adepartment",
+                "description": "All adepartment",
                 "operationId": "all_departaments",
                 "responses": {
                     "200": {
@@ -927,8 +941,8 @@
                 "tags": [
                     "Departments"
                 ],
-                "summary": "Store adepartament",
-                "description": "Store adepartament",
+                "summary": "Store adepartment",
+                "description": "Store adepartment",
                 "operationId": "store_departament",
                 "requestBody": {
                     "required": true,
@@ -983,8 +997,8 @@
                 "tags": [
                     "Departments"
                 ],
-                "summary": "See adepartament",
-                "description": "See adepartament",
+                "summary": "See adepartment",
+                "description": "See adepartment",
                 "operationId": "watch_departament",
                 "parameters": [
                     {
@@ -1052,8 +1066,8 @@
                 "tags": [
                     "Departments"
                 ],
-                "summary": "Update adepartament",
-                "description": "Update adepartament",
+                "summary": "Update adepartment",
+                "description": "Update adepartment",
                 "operationId": "update_departament",
                 "parameters": [
                     {
@@ -1116,8 +1130,8 @@
                 "tags": [
                     "Departments"
                 ],
-                "summary": "Delete adepartament",
-                "description": "Delete adepartament",
+                "summary": "Delete adepartment",
+                "description": "Delete adepartment",
                 "operationId": "delete_departament",
                 "parameters": [
                     {
