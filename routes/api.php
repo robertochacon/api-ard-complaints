@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\DepartamentsController;
 use App\Http\Controllers\ComplaintsController;
@@ -32,6 +33,9 @@ Route::group([
     Route::post('/logout/', [AuthController::class, 'logout']);
     Route::post('/refresh/', [AuthController::class, 'refresh']);
     Route::post('/me/', [AuthController::class, 'me']);
+
+    //dashboard
+    Route::get('/dashboard/', [DashboardController::class, 'index']);
 
     //type
     Route::get('/types/', [TypesController::class, 'index']);
