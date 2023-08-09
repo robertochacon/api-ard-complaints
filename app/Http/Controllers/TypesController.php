@@ -120,19 +120,19 @@ class TypesController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/types/{id}",
-     *      operationId="update_type",
-     *      tags={"Types"},
+     *     path="/api/types/{id}",
+     *     operationId="update_type",
+     *     tags={"Types"},
      *     security={{ "apiAuth": {} }},
-     *      summary="Update type",
-     *      description="Update type",
+     *     summary="Update type",
+     *     description="Update type",
      *     @OA\Parameter(
      *         in="path",
      *         name="id",
      *         required=true,
      *         @OA\Schema(type="string")
      *     ),
-     *      @OA\RequestBody(
+     *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *            required={"name"},
@@ -152,8 +152,8 @@ class TypesController extends Controller
 
     public function update(Request $request, $id){
         try{
-            $orders = Types::where('id',$id)->first();
-            $orders->update($request->all());
+            $types = Types::where('id',$id)->first();
+            $types->update($request->all());
             return response()->json(["data"=>"ok"],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);

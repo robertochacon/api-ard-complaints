@@ -41,7 +41,7 @@ Route::group([
     Route::get('/types/', [TypesController::class, 'index']);
     Route::get('/types/{id}/', [TypesController::class, 'watch']);
     Route::post('/types/', [TypesController::class, 'register']);
-    Route::put('/typtypese/{id}/', [TypesController::class, 'update']);
+    Route::put('/types/{id}/', [TypesController::class, 'update']);
     Route::delete('/types/{id}/', [TypesController::class, 'delete']);
 
     //departaments

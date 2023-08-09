@@ -34,11 +34,16 @@ class DashboardController extends Controller
     {
         try{
             //totales
-            $data['totales'][] = DB::select("SELECT COUNT(id) as enviadas FROM complaints WHERE status = 'Enviada'")[0];
-            $data['totales'][] = DB::select("SELECT COUNT(id) as recibidas FROM complaints WHERE status = 'Recibida'")[0];
-            $data['totales'][] = DB::select("SELECT COUNT(id) as procesando FROM complaints WHERE status = 'Procesando'")[0];
-            $data['totales'][] = DB::select("SELECT COUNT(id) as finalizada FROM complaints WHERE status = 'Finalizada'")[0];
-            $data['totales'][] = DB::select("SELECT COUNT(id) as rechazada FROM complaints WHERE status = 'Rechazada'")[0];
+            $data['enviadas']['name'] = 'enviadas';
+            $data['enviadas']['quantity'] = COUNT(DB::select("SELECT id FROM complaints WHERE status = 'Enviada'"));
+            $data['recibidas']['name'] = 'recibidas';
+            $data['recibidas']['quantity'] = COUNT(DB::select("SELECT id FROM complaints WHERE status = 'Recibida'"));
+            $data['procesando']['name'] = 'procesando';
+            $data['procesando']['quantity'] = COUNT(DB::select("SELECT id FROM complaints WHERE status = 'Procesando'"));
+            $data['finalizada']['name'] = 'finalizada';
+            $data['finalizada']['quantity'] = COUNT(DB::select("SELECT id FROM complaints WHERE status = 'Finalizada'"));
+            $data['rechazada']['name'] = 'rechazada';
+            $data['rechazada']['quantity'] = COUNT(DB::select("SELECT id FROM complaints WHERE status = 'Rechazada'"));
 
             return response()->json(["data"=>$data],200);
         }catch (Exception $e) {
