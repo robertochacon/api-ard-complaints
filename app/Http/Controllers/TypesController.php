@@ -78,7 +78,7 @@ class TypesController extends Controller
 
     public function watch($id){
         try{
-            $types = Types::find($id)->with('department')->get();;
+            $types = Types::with('department')->find($id);
             return response()->json(["data"=>$types],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
