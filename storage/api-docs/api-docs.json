@@ -744,7 +744,7 @@
                 ],
                 "summary": "Update complaint",
                 "description": "Update complaint",
-                "operationId": "complaints_register",
+                "operationId": "complaints_update",
                 "parameters": [
                     {
                         "name": "id",
@@ -913,7 +913,7 @@
                 ],
                 "summary": "All adepartament",
                 "description": "All adepartament",
-                "operationId": "all_type",
+                "operationId": "all_departaments",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -974,7 +974,7 @@
                 ],
                 "summary": "See adepartament",
                 "description": "See adepartament",
-                "operationId": "watch_type",
+                "operationId": "watch_departament",
                 "parameters": [
                     {
                         "name": "id",
@@ -1045,7 +1045,7 @@
                 ],
                 "summary": "Store adepartament",
                 "description": "Store adepartament",
-                "operationId": "store_type",
+                "operationId": "store_departament",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1101,7 +1101,7 @@
                 ],
                 "summary": "Update adepartament",
                 "description": "Update adepartament",
-                "operationId": "update_type",
+                "operationId": "update_departament",
                 "parameters": [
                     {
                         "name": "id",
@@ -1167,7 +1167,7 @@
                 ],
                 "summary": "Delete adepartament",
                 "description": "Delete adepartament",
-                "operationId": "delete_type",
+                "operationId": "delete_departament",
                 "parameters": [
                     {
                         "name": "id",
@@ -1594,7 +1594,7 @@
                 ],
                 "summary": "Get user",
                 "description": "Get user",
-                "operationId": "all_users",
+                "operationId": "watch_user",
                 "parameters": [
                     {
                         "name": "id",
@@ -1801,5 +1801,31 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Register",
+            "description": "Register"
+        },
+        {
+            "name": "Login",
+            "description": "Login"
+        },
+        {
+            "name": "Complaints",
+            "description": "Complaints"
+        },
+        {
+            "name": "Departaments",
+            "description": "Departaments"
+        },
+        {
+            "name": "Types",
+            "description": "Types"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
 }

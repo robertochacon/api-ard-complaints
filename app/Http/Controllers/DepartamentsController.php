@@ -11,7 +11,7 @@ class DepartamentsController extends Controller
      /**
      * @OA\Get (
      *     path="/api/auth/departaments",
-     *      operationId="all_type",
+     *      operationId="all_departaments",
      *     tags={"Departaments"},
      *     security={{ "apiAuth": {} }},
      *     summary="All adepartament",
@@ -44,7 +44,7 @@ class DepartamentsController extends Controller
      /**
      * @OA\Get (
      *     path="/api/auth/departaments/{id}",
-     *     operationId="watch_type",
+     *     operationId="watch_departament",
      *     tags={"Departaments"},
      *     security={{ "apiAuth": {} }},
      *     summary="See adepartament",
@@ -86,7 +86,7 @@ class DepartamentsController extends Controller
     /**
      * @OA\Post(
      *      path="/api/auth/departament",
-     *      operationId="store_type",
+     *      operationId="store_departament",
      *      tags={"Departaments"},
      *     security={{ "apiAuth": {} }},
      *      summary="Store adepartament",
@@ -117,7 +117,7 @@ class DepartamentsController extends Controller
     /**
      * @OA\Put(
      *      path="/api/auth/departament/update/{id}",
-     *      operationId="update_type",
+     *      operationId="update_departament",
      *      tags={"Departaments"},
      *     security={{ "apiAuth": {} }},
      *      summary="Update adepartament",
@@ -158,7 +158,7 @@ class DepartamentsController extends Controller
     /**
      * @OA\Delete(
      *      path="/api/auth/departament/delete/{id}",
-     *      operationId="delete_type",
+     *      operationId="delete_departament",
      *      tags={"Departaments"},
      *     security={{ "apiAuth": {} }},
      *      summary="Delete adepartament",

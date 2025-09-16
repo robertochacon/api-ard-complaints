@@ -51,7 +51,7 @@ class UserController extends Controller
     /**
      * @OA\Get (
      *     path="/api/auth/user/{id}",
-     *      operationId="all_users",
+     *      operationId="watch_user",
      *     tags={"Users"},
      *     security={{ "apiAuth": {} }},
      *     summary="Get user",

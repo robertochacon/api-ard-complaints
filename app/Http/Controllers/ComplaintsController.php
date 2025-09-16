@@ -285,7 +285,7 @@ class ComplaintsController extends Controller
     /**
      * @OA\Put (
      *     path="/api/auth/auth/complaint/update/{id}",
-     *     operationId="complaints_register",
+     *     operationId="complaints_update",
      *     tags={"Complaints"},
      *     security={{ "apiAuth": {} }},
      *     summary="Update complaint",
