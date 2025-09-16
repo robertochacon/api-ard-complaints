@@ -1,100 +1,62 @@
-# API ARD Complaints
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-Sistema de gestión de quejas desarrollado con Laravel 5.8 y JWT Authentication.
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## 🚀 Inicio Rápido
+## About Laravel
 
-### Credenciales de Prueba
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-**Usuarios Administradores:**
-- **Admin**: `admin@test.com` / `admin123`
-- **Super Admin**: `superadmin@test.com` / `superadmin123`
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-**Usuarios Regulares:**
-- **Test User**: `user@test.com` / `user123`
-- **Demo User**: `demo@test.com` / `demo123`
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-### Iniciar el Servidor
+## Learning Laravel
 
-```bash
-# Opción 1: Servidor Laravel (si no hay conflictos de dependencias)
-php artisan serve --port=8000
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-# Opción 2: Servidor PHP integrado (recomendado)
-cd public
-php -S localhost:8000
-```
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-### Documentación de la API
+## Laravel Sponsors
 
-- **Swagger UI**: http://localhost:8000/docs
-- **API JSON**: http://localhost:8000/api/documentation
-- **Documentación Completa**: Ver [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-## 📋 Endpoints Principales
+### Premium Partners
 
-### Autenticación
-- `POST /api/login/` - Iniciar sesión
-- `POST /api/register/` - Registro de usuario
-- `POST /api/logout/` - Cerrar sesión
-- `POST /api/refresh/` - Renovar token
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
 
-### Gestión de Quejas (Protegido)
-- `GET /api/auth/complaints/` - Listar quejas
-- `POST /api/auth/complaint/` - Crear queja
-- `GET /api/auth/complaint/{code}/` - Ver queja específica
-- `PUT /api/auth/complaint/update/{id}/` - Actualizar queja
-- `DELETE /api/auth/complaint/delete/{id}/` - Eliminar queja
+## Contributing
 
-### Gestión de Tipos (Protegido)
-- `GET /api/auth/types/` - Listar tipos
-- `POST /api/auth/type/` - Crear tipo
-- `PUT /api/auth/type/update/{id}/` - Actualizar tipo
-- `DELETE /api/auth/type/delete/{id}/` - Eliminar tipo
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-### Gestión de Departamentos (Protegido)
-- `GET /api/auth/departaments/` - Listar departamentos
-- `POST /api/auth/departament/` - Crear departamento
-- `PUT /api/auth/departament/update/{id}/` - Actualizar departamento
-- `DELETE /api/auth/departament/delete/{id}/` - Eliminar departamento
+## Code of Conduct
 
-### Gestión de Usuarios (Protegido)
-- `GET /api/auth/users/` - Listar usuarios
-- `GET /api/auth/user/{id}/` - Ver usuario específico
-- `PUT /api/auth/user/update/{id}/` - Actualizar usuario
-- `DELETE /api/auth/user/delete/{id}/` - Eliminar usuario
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## 🔐 Autenticación JWT
+## Security Vulnerabilities
 
-Todas las rutas protegidas requieren el header:
-```
-Authorization: Bearer {token}
-```
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## 📊 Datos de Prueba Incluidos
+## License
 
-**Tipos de Quejas:**
-- Corrupción, Maltrato, Negligencia, Discriminación, Abuso de poder, Violación de derechos, Otros
-
-**Departamentos:**
-- Recursos Humanos, Administración, Finanzas, Tecnología, Servicios Generales, Atención al Cliente, Legal
-
-## 🛠️ Instalación
-
-1. `composer install`
-2. Copiar `.env.example` a `.env`
-3. `php artisan key:generate`
-4. Configurar base de datos en `.env`
-5. `php artisan migrate:fresh`
-6. Los datos de prueba ya están incluidos
-
-## 📚 Documentación Completa
-
-Para información detallada sobre todos los endpoints, estructura de datos y ejemplos de uso, consulta [API_DOCUMENTATION.md](API_DOCUMENTATION.md).
-
-## ⚠️ Notas Importantes
-
-- El sistema está configurado con SQLite por defecto
-- La documentación Swagger se genera automáticamente
-- Todos los endpoints incluyen validación de datos
-- El sistema soporta archivos adjuntos en las quejas
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
