@@ -2034,5 +2034,39 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Login",
+            "description": "Login"
+        },
+        {
+            "name": "Register",
+            "description": "Register"
+        },
+        {
+            "name": "Complaints",
+            "description": "Complaints"
+        },
+        {
+            "name": "Dashboard",
+            "description": "Dashboard"
+        },
+        {
+            "name": "Departments",
+            "description": "Departments"
+        },
+        {
+            "name": "Records",
+            "description": "Records"
+        },
+        {
+            "name": "Types",
+            "description": "Types"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
 }
