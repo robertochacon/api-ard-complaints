@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateComplaintsTable extends Migration
 {
@@ -15,7 +16,7 @@ class CreateComplaintsTable extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('code')->default(DB::raw('(UUID())'));
+            $table->uuid('code')->nullable();
             $table->string('identification')->nullable();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
