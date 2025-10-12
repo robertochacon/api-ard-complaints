@@ -9,12 +9,8 @@ class Types extends Model
     protected $table = 'types';
 
     protected $fillable = [
-        'id','department_id','name','status'
+        'name','status'
     ];
 
-    public function department()
-    {
-    	return $this->belongsTo('App\Models\Departaments', 'department_id');
-    }
 
 }

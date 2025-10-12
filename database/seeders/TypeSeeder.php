@@ -15,22 +15,17 @@ class TypeSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            ['department_id' => '1','name' => 'Viajes ilegales'],
-            ['department_id' => '1','name' => 'Robo de embarcaciones'],
-            ['department_id' => '1','name' => 'Pérdida de embarcaciones'],
-
-            ['department_id' => '2','name' => 'Construccion ilegal de embarcaciones'],
-            ['department_id' => '2','name' => 'Violacion a los 60 Mt2 de Construcción'],
-            ['department_id' => '2','name' => 'Derrame de combustibles'],
-            ['department_id' => '2','name' => 'Embarcaciones a alta velocidad (Recreo)'],
-
-            ['department_id' => '3','name' => 'Pesca Ilega'],
-
-            ['department_id' => '4','name' => 'Corrupción de miembros'],
-
-            ['department_id' => '5','name' => 'Acumulación de desechos solicitando'],
-
-            ['department_id' => '6','name' => 'Embarcaciones con perfil sospechoso']
+            ['name' => 'Viajes ilegales', 'status' => 'active'],
+            ['name' => 'Robo de embarcaciones', 'status' => 'active'],
+            ['name' => 'Pérdida de embarcaciones', 'status' => 'active'],
+            ['name' => 'Construccion ilegal de embarcaciones', 'status' => 'active'],
+            ['name' => 'Violacion a los 60 Mt2 de Construcción', 'status' => 'active'],
+            ['name' => 'Derrame de combustibles', 'status' => 'active'],
+            ['name' => 'Embarcaciones a alta velocidad (Recreo)', 'status' => 'active'],
+            ['name' => 'Pesca Ilega', 'status' => 'active'],
+            ['name' => 'Corrupción de miembros', 'status' => 'active'],
+            ['name' => 'Acumulación de desechos solicitando', 'status' => 'active'],
+            ['name' => 'Embarcaciones con perfil sospechoso', 'status' => 'active']
         ]);
     }
 }

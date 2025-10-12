@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Types;
 use Illuminate\Http\Request;
+use Exception;
 
 class TypesController extends Controller
 {
@@ -37,7 +38,7 @@ class TypesController extends Controller
      */
     public function index()
     {
-        $types = Types::with('department')->paginate(10);
+        $types = Types::paginate(10);
         return response()->json(["data"=>$types],200);
     }
 
@@ -78,7 +79,7 @@ class TypesController extends Controller
 
     public function watch($id){
         try{
-            $types = Types::with('department')->find($id);
+            $types = Types::find($id);
             return response()->json(["data"=>$types],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
